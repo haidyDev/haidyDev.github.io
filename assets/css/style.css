@@ -1,206 +1,219 @@
+/* =========================
+   Variables / Base
+========================= */
+
 :root{
   --bg:#0b1220;
   --card: rgba(255,255,255,0.08);
-  --text: rgba(255,255,255,0.92);
-  --muted: rgba(255,255,255,0.72);
+  --text: rgba(255,255,255,0.95);
+  --muted: rgba(255,255,255,0.75);
   --line: rgba(255,255,255,0.16);
   --accent: #f2d27a;
-  --max: 980px;
 }
 
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
+*{
+  box-sizing: border-box;
+}
 
 body{
   margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background:
     radial-gradient(1200px 600px at 20% 10%, rgba(242,210,122,0.18), transparent 60%),
     radial-gradient(900px 500px at 90% 20%, rgba(99,102,241,0.18), transparent 55%),
     var(--bg);
   color: var(--text);
+  line-height: 1.55;
 }
 
-a{ color:inherit; text-decoration:none; }
-a:hover{ text-decoration:underline; }
+a{
+  color: inherit;
+  text-decoration: none;
+}
 
 .container{
-  width:min(var(--max), calc(100% - 32px));
-  margin:0 auto;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
 }
 
-/* ===== Header ===== */
+/* =========================
+   Header
+========================= */
 
 .nav{
-  position: sticky;
-  top:0;
-  backdrop-filter: blur(10px);
-  background: rgba(11,18,32,0.6);
+  background: rgba(11,18,32,0.65);
   border-bottom: 1px solid var(--line);
-  z-index: 10;
 }
 
 .nav-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:14px 0;
-  gap:12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .brand{
-  display:flex;
-  flex-direction:column;
-  line-height: 1.1;
+  display: flex;
+  flex-direction: column;
 }
 
 .brand .name{
-  font-weight:700;
-  letter-spacing:0.2px;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .brand .role{
-  font-size:12px;
-  letter-spacing: 0.12em;
-  text-transform:uppercase;
+  font-size: 12px;
   color: var(--muted);
-  margin-top:6px;
-}
-
-.nav-links{
-  display:flex;
-  gap:14px;
-  align-items:center;
-  flex-wrap:wrap;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 4px;
 }
 
 .nav-links a{
-  padding:8px 12px;
-  border:1px solid var(--line);
-  border-radius:999px;
-  background: rgba(255,255,255,0.04);
+  margin-left: 18px;
+  font-size: 14px;
+  opacity: 0.85;
 }
 
 .nav-links a:hover{
-  background: rgba(255,255,255,0.08);
-  text-decoration:none;
+  opacity: 1;
 }
 
-/* ===== Hero (2 cards) ===== */
+/* =========================
+   Hero (TWO CARDS)
+========================= */
 
 .hero{
-  padding:28px 0 18px;
+  padding: 36px 0 56px;
 }
 
 .hero-grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:18px;
-  align-items:stretch;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 24px;
+  align-items: stretch;
 }
 
-@media (max-width: 860px){
-  .hero-grid{ grid-template-columns: 1fr; }
-}
+/* Shared card style */
 
 .card{
-  border:1px solid var(--line);
   background: var(--card);
+  border: 1px solid var(--line);
   border-radius: 18px;
-  overflow:hidden;
-  box-shadow: 0 18px 60px rgba(0,0,0,0.25);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.28);
+  overflow: hidden;
 }
 
-/* Left card (text) */
+/* Left card – text */
 
 .hero-text{
-  padding:18px;
+  padding: 22px;
 }
 
-.kicker{
-  font-size:12px;
-  letter-spacing: 0.18em;
-  text-transform:uppercase;
+.hero-text h1{
+  margin: 0 0 12px;
+  font-size: 44px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.hero-text h1 span{
+  color: var(--accent);
+}
+
+.hero-text p{
+  margin: 0;
+  max-width: 56ch;
   color: var(--muted);
 }
 
-.h1{
-  margin:10px 0 0;
-  font-size:42px;
-  line-height:1.05;
-  letter-spacing:-0.02em;
-}
-
-.h1 .accent{ color: var(--accent); }
-
-.sub{
-  margin-top:10px;
-  color: var(--muted);
-  line-height:1.45;
-  max-width: 52ch;
-}
+/* Buttons */
 
 .actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:14px;
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .btn{
-  display:inline-block;
-  padding:10px 14px;
-  border-radius:12px;
-  border:1px solid var(--line);
-  background: rgba(255,255,255,0.06);
-}
-
-.btn.primary{
-  background: rgba(242,210,122,0.16);
-  border-color: rgba(242,210,122,0.35);
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.05);
+  font-size: 14px;
 }
 
 .btn:hover{
-  text-decoration:none;
-  background: rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.1);
+}
+
+.btn.primary{
+  background: rgba(242,210,122,0.18);
+  border-color: rgba(242,210,122,0.45);
+  color: #1a1a1a;
 }
 
 .btn.primary:hover{
-  background: rgba(242,210,122,0.22);
+  background: rgba(242,210,122,0.28);
 }
 
-/* Right card (image) */
-
-.hero-image{
-  position:relative;
-}
+/* Right card – image */
 
 .hero-image img{
-  width:100%;
-  height:100%;
-  min-height: 520px;
-  object-fit:cover;
-  object-position: top center; /* FIX: show the top part */
-  display:block;
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  object-position: 50% 12%; /* AINOA MUUTOS: yläosa näkyviin */
+  display: block;
 }
 
-/* ===== Footer ===== */
+/* =========================
+   Footer
+========================= */
 
 footer{
-  border-top:1px solid var(--line);
-  color: var(--muted);
-  padding:18px 0 30px;
+  border-top: 1px solid var(--line);
+  margin-top: 48px;
+  padding: 24px 0 32px;
   font-size: 13px;
-  margin-top: 22px;
+  color: var(--muted);
 }
 
 .footer-inner{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  flex-wrap:wrap;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.footer-note{
-  opacity: 0.75;
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 900px){
+  .hero-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .hero-text h1{
+    font-size: 38px;
+  }
+
+  .hero-image img{
+    height: 420px;
+    object-position: 50% 12%;
+  }
+}
+
+@media (max-width: 520px){
+  .hero-text h1{
+    font-size: 32px;
+  }
+
+  .hero-image img{
+    height: 340px;
+    object-position: 50% 12%;
+  }
 }
