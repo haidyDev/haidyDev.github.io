@@ -3,14 +3,18 @@ const inputEl = document.getElementById("userInput");
 const buttonEl = document.getElementById("submitBtn");
 const messageEl = document.getElementById("message");
 
-// 2) Aputoiminto: viestin näyttäminen käyttäjälle
+// 2) Aputoiminto: viestin näyttäminen käyttäjälle (tila: ok / error)
 function showMessage(text, type) {
     messageEl.textContent = text;
 
+    // Poistetaan vanhat tilaluokat
+    messageEl.classList.remove("message--error", "message--ok");
+
+    // Lisätään oikea tila
     if (type === "error") {
-        messageEl.style.color = "#ffb4b4";
+        messageEl.classList.add("message--error");
     } else {
-        messageEl.style.color = "#b8ffcb";
+        messageEl.classList.add("message--ok");
     }
 }
 
@@ -18,9 +22,15 @@ function showMessage(text, type) {
 function handleSubmit() {
     const value = inputEl.value.trim();
 
-    // Validointi: onko syöte tyhjä?
+    // Validointi 1: tyhjä syöte
     if (value === "") {
         showMessage("Syötä jotain ennen kuin jatkat.", "error");
+        return;
+    }
+
+    // Validointi 2: liian lyhyt syöte
+    if (value.length < 3) {
+        showMessage("Syötteen tulee olla vähintään 3 merkkiä.", "error");
         return;
     }
 
