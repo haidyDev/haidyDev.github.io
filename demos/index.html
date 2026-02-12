@@ -34,6 +34,10 @@
     <div class="container">
       <section class="card" style="padding: 22px;">
         <h1>Demos</h1>
+        <div style="margin-top: 12px;">
+          <label for="demoSearchInput"><strong>Search demos:</strong></label>
+          <input id="demoSearchInput" type="search" placeholder="Search by title, tag, stack, focus..." style="margin-top: 8px; width: 100%; max-width: 460px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255, 255, 255, 0.06); color: var(--text);">
+        </div>
         <div id="filters" style="margin-top: 12px;">
           <p style="margin: 0 0 8px 0;">
             <strong>Filter:</strong>
@@ -42,6 +46,7 @@
           <p id="category-filters" style="margin: 0 0 8px 0;"></p>
           <p id="tag-filters" style="margin: 0;"></p>
         </div>
+        <div id="demos-status" class="card" style="margin-top: 12px; padding: 14px; display: none;"></div>
         <div id="demos-root"></div>
       </section>
     </div>
@@ -75,6 +80,8 @@
   <script>
     (function () {
       var root = document.getElementById('demos-root');
+      var statusBox = document.getElementById('demos-status');
+      var searchInput = document.getElementById('demoSearchInput');
       var categoryFiltersRoot = document.getElementById('category-filters');
       var tagFiltersRoot = document.getElementById('tag-filters');
       var showAllBtn = document.getElementById('showAllBtn');
@@ -82,7 +89,9 @@
       var state = {
         demos: [],
         category: null,
-        tag: null
+        tag: null,
+        query: '',
+        openPreviewPath: null
       };
 
       function renderDemoCard(demo) {
@@ -90,18 +99,52 @@
         card.className = 'card';
         card.style.padding = '16px';
         card.style.marginTop = '12px';
+        card.style.cursor = 'pointer';
 
         var title = document.createElement('h3');
         title.textContent = demo.title;
 
-        var metaTop = document.createElement('p');
-        metaTop.style.margin = '0 0 6px 0';
-        metaTop.style.fontSize = '0.82rem';
-        metaTop.style.color = 'var(--muted)';
-        metaTop.textContent = demo.focus ? 'Focus: ' + demo.focus : '';
-
         var description = document.createElement('p');
         description.textContent = demo.description || '';
+
+        var summaryRow = document.createElement('p');
+        summaryRow.style.margin = '8px 0 0 0';
+
+        if (demo.focus) {
+          var focusLabel = document.createElement('span');
+          focusLabel.textContent = 'Focus: ' + demo.focus;
+          focusLabel.style.display = 'inline-block';
+          focusLabel.style.fontSize = '0.78rem';
+          focusLabel.style.padding = '4px 8px';
+          focusLabel.style.marginRight = '6px';
+          focusLabel.style.marginBottom = '6px';
+          focusLabel.style.borderRadius = '999px';
+          focusLabel.style.border = '1px solid var(--line)';
+          focusLabel.style.background = 'rgba(242, 210, 122, 0.18)';
+          summaryRow.appendChild(focusLabel);
+        }
+
+        if (demo.level) {
+          var levelLabel = document.createElement('span');
+          levelLabel.textContent = 'Level: ' + demo.level;
+          levelLabel.style.display = 'inline-block';
+          levelLabel.style.fontSize = '0.78rem';
+          levelLabel.style.padding = '4px 8px';
+          levelLabel.style.marginRight = '6px';
+          levelLabel.style.marginBottom = '6px';
+          levelLabel.style.borderRadius = '999px';
+          levelLabel.style.border = '1px solid var(--line)';
+          levelLabel.style.background = 'rgba(255, 255, 255, 0.06)';
+          summaryRow.appendChild(levelLabel);
+        }
+
+        var stackLine = document.createElement('p');
+        stackLine.style.margin = '6px 0 0 0';
+        stackLine.style.fontSize = '0.82rem';
+        stackLine.style.color = 'var(--muted)';
+        if ((demo.stack || []).length > 0) {
+          stackLine.textContent = 'Stack: ' + demo.stack.join(' • ');
+        }
 
         var tagsRow = document.createElement('p');
         tagsRow.style.marginTop = '8px';
@@ -120,51 +163,70 @@
           tagsRow.appendChild(badge);
         });
 
-        var stackRow = document.createElement('p');
-        stackRow.style.marginTop = '8px';
-
-        (demo.stack || []).forEach(function (item) {
-          var badge = document.createElement('span');
-          badge.textContent = item;
-          badge.style.display = 'inline-block';
-          badge.style.fontSize = '0.78rem';
-          badge.style.padding = '4px 8px';
-          badge.style.marginRight = '6px';
-          badge.style.marginBottom = '6px';
-          badge.style.borderRadius = '999px';
-          badge.style.border = '1px solid var(--line)';
-          badge.style.background = 'rgba(242, 210, 122, 0.18)';
-          stackRow.appendChild(badge);
-        });
-
-        var levelRow = document.createElement('p');
-        levelRow.style.margin = '4px 0 0 0';
-        levelRow.style.fontSize = '0.82rem';
-        levelRow.style.color = 'var(--muted)';
-        levelRow.textContent = demo.level ? 'Level: ' + demo.level : '';
-
         var actions = document.createElement('p');
+        actions.style.display = 'flex';
+        actions.style.gap = '8px';
+        actions.style.flexWrap = 'wrap';
+
         var link = document.createElement('a');
         link.className = 'btn';
         link.href = demo.path;
         link.textContent = 'Open demo';
         actions.appendChild(link);
 
+        var previewBtn = document.createElement('button');
+        previewBtn.className = 'btn';
+        previewBtn.type = 'button';
+        previewBtn.textContent = state.openPreviewPath === demo.path ? 'Hide preview' : 'Preview';
+        previewBtn.addEventListener('click', function (event) {
+          event.stopPropagation();
+          togglePreview(demo.path);
+        });
+        actions.appendChild(previewBtn);
+
+        var previewWrap = document.createElement('div');
+        previewWrap.style.marginTop = '10px';
+        previewWrap.style.border = '1px solid var(--line)';
+        previewWrap.style.borderRadius = '12px';
+        previewWrap.style.overflow = 'hidden';
+        previewWrap.style.display = state.openPreviewPath === demo.path ? 'block' : 'none';
+
+        if (state.openPreviewPath === demo.path) {
+          var iframe = document.createElement('iframe');
+          iframe.src = demo.path;
+          iframe.title = demo.title + ' preview';
+          iframe.loading = 'lazy';
+          iframe.style.width = '100%';
+          iframe.style.height = '360px';
+          iframe.style.border = '0';
+          previewWrap.appendChild(iframe);
+        }
+
+        card.addEventListener('click', function (event) {
+          if (event.target.closest('a, button, iframe')) {
+            return;
+          }
+          togglePreview(demo.path);
+        });
+
         card.appendChild(title);
-        if (metaTop.textContent) {
-          card.appendChild(metaTop);
-        }
         card.appendChild(description);
+        if (summaryRow.childNodes.length > 0) {
+          card.appendChild(summaryRow);
+        }
+        if (stackLine.textContent) {
+          card.appendChild(stackLine);
+        }
         card.appendChild(tagsRow);
-        if (stackRow.childNodes.length > 0) {
-          card.appendChild(stackRow);
-        }
-        if (levelRow.textContent) {
-          card.appendChild(levelRow);
-        }
         card.appendChild(actions);
+        card.appendChild(previewWrap);
 
         return card;
+      }
+
+      function togglePreview(path) {
+        state.openPreviewPath = state.openPreviewPath === path ? null : path;
+        renderDemos();
       }
 
       function createFilterButton(label, onClick) {
@@ -182,7 +244,8 @@
         var params = new URLSearchParams(window.location.search);
         return {
           category: params.get('category'),
-          tag: params.get('tag')
+          tag: params.get('tag'),
+          q: params.get('q')
         };
       }
 
@@ -195,6 +258,10 @@
 
         if (state.tag) {
           params.set('tag', state.tag);
+        }
+
+        if (state.query) {
+          params.set('q', state.query);
         }
 
         var query = params.toString();
@@ -214,13 +281,31 @@
 
         state.category = hasCategory ? params.category : null;
         state.tag = hasTag ? params.tag : null;
+        state.query = (params.q || '').trim();
+
+        if (searchInput) {
+          searchInput.value = state.query;
+        }
       }
 
       function getFilteredDemos() {
+        var normalizedQuery = state.query.toLowerCase();
+
         return state.demos.filter(function (demo) {
           var categoryMatch = !state.category || demo.category === state.category;
           var tagMatch = !state.tag || (demo.tags || []).indexOf(state.tag) !== -1;
-          return categoryMatch && tagMatch;
+
+          var searchText = [
+            demo.title || '',
+            demo.description || '',
+            (demo.tags || []).join(' '),
+            (demo.stack || []).join(' '),
+            demo.focus || '',
+            demo.category || ''
+          ].join(' ').toLowerCase();
+          var searchMatch = !normalizedQuery || searchText.indexOf(normalizedQuery) !== -1;
+
+          return categoryMatch && tagMatch && searchMatch;
         });
       }
 
@@ -260,17 +345,66 @@
         }
       }
 
+      function resetAllFilters() {
+        state.category = null;
+        state.tag = null;
+        state.query = '';
+
+        if (searchInput) {
+          searchInput.value = '';
+        }
+
+        updateURLFromFilter();
+      }
+
+      function showLoadingState() {
+        root.innerHTML = '';
+        statusBox.style.display = 'block';
+        statusBox.innerHTML = '<p style="margin: 0;">Loading demos...</p>';
+      }
+
+      function showEmptyState() {
+        root.innerHTML = '';
+        statusBox.style.display = 'block';
+        statusBox.innerHTML = '';
+
+        var message = document.createElement('p');
+        message.style.margin = '0';
+        message.textContent = 'No demos match current filters.';
+        statusBox.appendChild(message);
+
+        var actions = document.createElement('p');
+        actions.style.margin = '10px 0 0 0';
+
+        var resetBtn = document.createElement('button');
+        resetBtn.className = 'btn';
+        resetBtn.type = 'button';
+        resetBtn.textContent = 'Reset filters';
+        resetBtn.addEventListener('click', function () {
+          resetAllFilters();
+          renderDemos();
+        });
+        actions.appendChild(resetBtn);
+
+        statusBox.appendChild(actions);
+      }
+
+      function hideStatusState() {
+        statusBox.style.display = 'none';
+        statusBox.innerHTML = '';
+      }
+
       function renderDemos() {
         root.innerHTML = '';
 
         var filtered = getFilteredDemos();
         if (!filtered.length) {
-          var empty = document.createElement('p');
-          empty.textContent = 'No demos match the selected filter.';
-          root.appendChild(empty);
+          showEmptyState();
           updateFilterButtonStates();
           return;
         }
+
+        hideStatusState();
 
         var grouped = filtered.reduce(function (acc, demo) {
           var key = demo.category || 'Other';
@@ -352,14 +486,24 @@
         });
 
         showAllBtn.addEventListener('click', function () {
-          state.category = null;
-          state.tag = null;
-          updateURLFromFilter();
+          resetAllFilters();
           renderDemos();
         });
 
         updateFilterButtonStates();
       }
+
+      function bindSearch() {
+        if (!searchInput) return;
+
+        searchInput.addEventListener('input', function () {
+          state.query = searchInput.value.trim();
+          updateURLFromFilter();
+          renderDemos();
+        });
+      }
+
+      showLoadingState();
 
       fetch('./demos.json', { credentials: 'same-origin' })
         .then(function (response) {
@@ -372,9 +516,12 @@
           state.demos = demos;
           applyFilterFromURL();
           renderFilters();
+          bindSearch();
           renderDemos();
         })
         .catch(function (error) {
+          statusBox.style.display = 'block';
+          statusBox.innerHTML = '<p style="margin: 0;">Failed to load demos.</p>';
           console.warn('[demos] Failed to load demos.json', error);
         });
     })();
