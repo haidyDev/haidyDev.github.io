@@ -28,5 +28,15 @@
     "stack": ["JavaScript", "JSON", "HTML"],
     "focus": "Data transformation thinking",
     "level": "Learning project"
+  },
+  {
+    "title": "Invoice Triage Flow",
+    "category": "Automation",
+    "path": "/demos/automation/invoice-triage-flow/",
+    "description": "Automation-thinking demo: routing invoices through validation and approvals.",
+    "tags": ["Automation", "Process", "Security"],
+    "stack": ["Power Automate", "Logic", "JavaScript"],
+    "focus": "Process design and controls",
+    "level": "Learning project"
   }
 ]
