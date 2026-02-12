@@ -1,0 +1,36 @@
+.data-demo {
+    max-width: 980px;
+}
+
+.data-demo .card {
+    padding: 18px;
+}
+
+.data-demo .lead {
+    margin-top: 0;
+    color: var(--muted);
+}
+
+.data-demo .panel {
+    margin-top: 14px;
+}
+
+.data-demo textarea,
+.data-demo pre {
+    width: 100%;
+    min-height: 220px;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.92rem;
+    line-height: 1.45;
+}
+
+.data-demo pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+}

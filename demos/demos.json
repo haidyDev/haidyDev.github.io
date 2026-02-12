@@ -18,5 +18,15 @@
     "stack": ["Power Platform", "Dataverse", "Power Automate"],
     "focus": "Architecture thinking",
     "level": "Student project"
+  },
+  {
+    "title": "JSON Transform Pipeline",
+    "category": "Data",
+    "path": "/demos/data/json-transform-pipeline/",
+    "description": "Simple data transformation demo illustrating logic flow.",
+    "tags": ["Data", "Logic", "JavaScript"],
+    "stack": ["JavaScript", "JSON", "HTML"],
+    "focus": "Data transformation thinking",
+    "level": "Learning project"
   }
 ]

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Transform Pipeline</title>
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/demos/data/json-transform-pipeline/styles.css">
+</head>
+
+<body>
+    <div id="site-header"></div>
+
+    <main class="hero">
+        <div class="container data-demo">
+            <section class="card">
+                <h1>JSON Transform Pipeline</h1>
+                <p class="lead">Simple data transformation demo illustrating logic flow.</p>
+
+                <div class="actions">
+                    <a class="btn" href="/demos/">← Back to Demos</a>
+                    <a class="btn" href="/projects.html">Projektit</a>
+                </div>
+            </section>
+
+            <section class="card panel">
+                <h2>Input JSON</h2>
+                <textarea id="jsonInput" spellcheck="false" aria-label="Input JSON"></textarea>
+                <p>
+                    <button id="transformBtn" class="btn primary" type="button">Transform</button>
+                </p>
+            </section>
+
+            <section class="card panel">
+                <h2>Transformed Output</h2>
+                <pre id="jsonOutput" aria-live="polite"></pre>
+            </section>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="/demos/data/json-transform-pipeline/script.js"></script>
+    <script src="/assets/js/includes.js"></script>
+    <script src="/assets/js/nav-active.js"></script>
+</body>
+
+</html>
