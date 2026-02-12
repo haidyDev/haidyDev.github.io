@@ -4,8 +4,29 @@ const statusSelect = document.getElementById("statusSelect");
 const caseList = document.getElementById("caseList");
 const emptyState = document.getElementById("emptyState");
 
+const STORAGE_KEY = "haidydev.powerapp-ui-mock.cases.v1";
+
 // Data model (Power Apps -henkinen ajatus: items collection)
 let cases = [];
+
+function saveCases() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cases));
+}
+
+function loadCases() {
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+            cases = [];
+            return;
+        }
+
+        const parsed = JSON.parse(raw);
+        cases = Array.isArray(parsed) ? parsed : [];
+    } catch {
+        cases = [];
+    }
+}
 
 function statusToBadgeClass(status) {
     if (status === "New") return "new";
@@ -40,6 +61,7 @@ function render() {
         del.textContent = "Delete";
         del.addEventListener("click", () => {
             cases = cases.filter(c => c.id !== item.id);
+            saveCases();
             render();
         });
 
@@ -66,11 +88,14 @@ addBtn.addEventListener("click", () => {
         status
     });
 
+    saveCases();
+
     caseInput.value = "";
     caseInput.focus();
 
     render();
 });
 
-// initial render
+// initial load + render
+loadCases();
 render();
