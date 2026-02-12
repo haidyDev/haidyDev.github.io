@@ -1,0 +1,81 @@
+﻿<!doctype html>
+<html lang="fi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Before/After: Booking System Architecture</title>
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/demos/architecture/booking-system-before-after/styles.css">
+</head>
+
+<body>
+    <div id="site-header"></div>
+
+    <main class="hero">
+        <div class="container booking-demo">
+            <section class="card demo-intro">
+                <h1>Before/After: Booking System Architecture</h1>
+                <p class="lead">
+                    Architecture thinking demo: current-state pain points and a
+                    proposed Power Platform target design.
+                </p>
+
+                <div class="actions" aria-label="Page actions">
+                    <a class="btn" href="/demos/">← Back to Demos</a>
+                    <a class="btn" href="/projects.html">Projects</a>
+                    <button class="btn" id="toggleViewsBtn" type="button">Toggle Before/After</button>
+                </div>
+            </section>
+
+            <section class="card demo-section" id="beforeSection">
+                <h2>Before (current state)</h2>
+                <ul>
+                    <li>Bookings are managed in multiple spreadsheets and email chains.</li>
+                    <li>Status tracking is inconsistent, so teams duplicate work.</li>
+                    <li>No single source of truth for customer, reservation, and payment data.</li>
+                    <li>Manual handoffs cause delays and missed updates for end users.</li>
+                </ul>
+            </section>
+
+            <section class="card demo-section" id="afterSection">
+                <h2>After (proposed solution)</h2>
+                <ul>
+                    <li>Model booking data in Dataverse with clear ownership and validation rules.</li>
+                    <li>Use a Power App for booking intake, updates, and status visibility.</li>
+                    <li>Automate notifications and approvals with Power Automate flows.</li>
+                    <li>Provide role-based dashboards for operations and customer service.</li>
+                </ul>
+            </section>
+
+            <section class="card demo-section">
+                <h2>Key decisions</h2>
+                <ul>
+                    <li>Prioritize a normalized data model before UI complexity.</li>
+                    <li>Separate process automation from UI logic for maintainability.</li>
+                    <li>Define a minimal first release focused on core booking lifecycle.</li>
+                    <li>Use environment strategy (dev/test/prod) from the start.</li>
+                </ul>
+            </section>
+
+            <section class="card demo-section">
+                <h2>Risks & mitigations</h2>
+                <ul>
+                    <li>Risk: Scope creep. Mitigation: strict MVP boundaries and backlog triage.</li>
+                    <li>Risk: Data quality issues. Mitigation: validation rules and import cleanup flow.</li>
+                    <li>Risk: Low adoption. Mitigation: role-based training and pilot rollout.</li>
+                    <li>Risk: Flow failures. Mitigation: alerting, retries, and support runbooks.</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="/demos/architecture/booking-system-before-after/script.js"></script>
+    <script src="/assets/js/includes.js"></script>
+    <script src="/assets/js/nav-active.js"></script>
+</body>
+
+</html>

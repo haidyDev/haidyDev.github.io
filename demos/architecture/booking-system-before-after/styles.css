@@ -1,0 +1,29 @@
+﻿.booking-demo {
+    max-width: 980px;
+}
+
+.booking-demo .demo-intro,
+.booking-demo .demo-section {
+    padding: 18px;
+}
+
+.booking-demo .lead {
+    margin: 0 0 16px 0;
+    color: var(--muted);
+}
+
+.booking-demo .demo-section {
+    margin-top: 14px;
+}
+
+.booking-demo ul {
+    margin: 10px 0 0 20px;
+}
+
+.booking-demo li + li {
+    margin-top: 8px;
+}
+
+.booking-demo .is-hidden {
+    display: none;
+}
