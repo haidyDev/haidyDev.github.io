@@ -150,13 +150,14 @@ a{
 }
 
 .btn.primary{
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #14181f;
+  background: rgba(242,210,122,0.18);
+  border-color: rgba(242,210,122,0.45);
+  color: var(--text);
 }
 
 .btn.primary:hover{
-  background: rgba(242,210,122,0.28);
+  background: rgba(242,210,122,0.26);
+  border-color: rgba(242,210,122,0.60);
 }
 
 /* Right card – image */
