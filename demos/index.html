@@ -51,6 +51,7 @@
           <p id="category-filters" style="margin: 0 0 8px 0;"></p>
           <p id="tag-filters" style="margin: 0;"></p>
         </div>
+        <div id="comparison-panel"></div>
         <div id="demos-status" class="card" style="margin-top: 12px; padding: 14px; display: none;"></div>
         <div id="demos-root"></div>
       </section>
@@ -85,6 +86,7 @@
   <script>
     (function () {
       var root = document.getElementById('demos-root');
+      var comparisonPanel = document.getElementById('comparison-panel');
       var statusBox = document.getElementById('demos-status');
       var searchInput = document.getElementById('demoSearchInput');
       var categoryFiltersRoot = document.getElementById('category-filters');
@@ -100,6 +102,7 @@
         tag: null,
         query: '',
         openPreviewPath: null,
+        comparisonPaths: [],
         lastTrackedSearch: '',
         pinnedPath: null,
         pendingScrollY: null,
@@ -318,6 +321,32 @@
         });
         actions.appendChild(previewBtn);
 
+        var compareLabel = document.createElement('label');
+        compareLabel.style.display = 'inline-flex';
+        compareLabel.style.alignItems = 'center';
+        compareLabel.style.gap = '6px';
+        compareLabel.style.fontSize = '0.9rem';
+        compareLabel.style.cursor = 'pointer';
+
+        var compareCheckbox = document.createElement('input');
+        compareCheckbox.type = 'checkbox';
+        compareCheckbox.checked = state.comparisonPaths.indexOf(demo.path) !== -1;
+        compareCheckbox.setAttribute('aria-label', 'Compare ' + demo.title);
+        compareCheckbox.addEventListener('click', function (event) {
+          event.stopPropagation();
+        });
+        compareCheckbox.addEventListener('change', function (event) {
+          event.stopPropagation();
+          toggleComparison(demo.path);
+        });
+
+        var compareText = document.createElement('span');
+        compareText.textContent = 'Compare';
+
+        compareLabel.appendChild(compareCheckbox);
+        compareLabel.appendChild(compareText);
+        actions.appendChild(compareLabel);
+
         var previewWrap = document.createElement('div');
         previewWrap.id = previewId;
         previewWrap.style.marginTop = '10px';
@@ -371,13 +400,17 @@
         }
 
         card.addEventListener('click', function (event) {
-          if (event.target.closest('a, button, iframe')) {
+          if (event.target.closest('a, button, iframe, input, label')) {
             return;
           }
           togglePreview(demo.path, true);
         });
 
         card.addEventListener('keydown', function (event) {
+          if (event.target !== card) {
+            return;
+          }
+
           if (event.key === 'Enter') {
             event.preventDefault();
             togglePreview(demo.path, true);
@@ -471,6 +504,120 @@
         if (restoreFocus) {
           focusCardByPath(path);
         }
+      }
+
+      function getSelectedComparisonDemos() {
+        return state.comparisonPaths
+          .map(function (path) {
+            return state.demos.find(function (demo) { return demo.path === path; }) || null;
+          })
+          .filter(function (demo) { return !!demo; });
+      }
+
+      function toggleComparison(path) {
+        var index = state.comparisonPaths.indexOf(path);
+        if (index !== -1) {
+          state.comparisonPaths.splice(index, 1);
+          renderComparisonPanel();
+          renderDemos();
+          return;
+        }
+
+        if (state.comparisonPaths.length >= 3) {
+          return;
+        }
+
+        state.comparisonPaths.push(path);
+        renderComparisonPanel();
+        renderDemos();
+      }
+
+      function renderComparisonPanel() {
+        if (!comparisonPanel) return;
+        comparisonPanel.innerHTML = '';
+
+        var selected = getSelectedComparisonDemos();
+        if (selected.length < 2) {
+          return;
+        }
+
+        var card = document.createElement('section');
+        card.className = 'card';
+        card.style.marginTop = '12px';
+        card.style.padding = '14px';
+
+        var topRow = document.createElement('div');
+        topRow.style.display = 'flex';
+        topRow.style.justifyContent = 'space-between';
+        topRow.style.alignItems = 'center';
+        topRow.style.gap = '10px';
+        topRow.style.flexWrap = 'wrap';
+
+        var title = document.createElement('h3');
+        title.style.margin = '0';
+        title.textContent = 'Comparison';
+        topRow.appendChild(title);
+
+        var clearBtn = document.createElement('button');
+        clearBtn.className = 'btn';
+        clearBtn.type = 'button';
+        clearBtn.textContent = 'Clear comparison';
+        clearBtn.addEventListener('click', function () {
+          state.comparisonPaths = [];
+          renderComparisonPanel();
+          renderDemos();
+        });
+        topRow.appendChild(clearBtn);
+
+        var tableWrap = document.createElement('div');
+        tableWrap.style.marginTop = '10px';
+        tableWrap.style.overflowX = 'auto';
+
+        var table = document.createElement('table');
+        table.style.width = '100%';
+        table.style.borderCollapse = 'collapse';
+        table.style.fontSize = '0.9rem';
+
+        var fields = [
+          { label: 'Title', key: 'title' },
+          { label: 'Focus', key: 'focus' },
+          { label: 'Stack', key: 'stack' },
+          { label: 'Category', key: 'category' },
+          { label: 'Level', key: 'level' }
+        ];
+
+        fields.forEach(function (field) {
+          var row = document.createElement('tr');
+
+          var th = document.createElement('th');
+          th.textContent = field.label;
+          th.style.textAlign = 'left';
+          th.style.padding = '8px';
+          th.style.borderBottom = '1px solid var(--line)';
+          th.style.verticalAlign = 'top';
+          row.appendChild(th);
+
+          selected.forEach(function (demo) {
+            var td = document.createElement('td');
+            td.style.padding = '8px';
+            td.style.borderBottom = '1px solid var(--line)';
+            td.style.verticalAlign = 'top';
+
+            if (field.key === 'stack') {
+              td.textContent = (demo.stack || []).join(' • ');
+            } else {
+              td.textContent = demo[field.key] || '';
+            }
+            row.appendChild(td);
+          });
+
+          table.appendChild(row);
+        });
+
+        tableWrap.appendChild(table);
+        card.appendChild(topRow);
+        card.appendChild(tableWrap);
+        comparisonPanel.appendChild(card);
       }
 
       function appendCurrentQueryToLinks(container) {
@@ -835,6 +982,7 @@
 
       function renderDemos() {
         root.innerHTML = '';
+        renderComparisonPanel();
 
         var filtered = getFilteredDemos();
         if (!filtered.length) {
@@ -942,6 +1090,9 @@
         })
         .then(function (demos) {
           state.demos = demos;
+          state.comparisonPaths = state.comparisonPaths.filter(function (path) {
+            return demos.some(function (demo) { return demo.path === path; });
+          });
           applyFilterFromURL();
           applySavedSessionState(loadSessionState());
           renderFilters();
