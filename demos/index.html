@@ -23,9 +23,9 @@
       </div>
 
       <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="about.html">About</a>
+        <a href="/index.html">Home</a>
+        <a href="/projects.html">Projects</a>
+        <a href="/about.html">About</a>
       </nav>
     </div>
   </header>
@@ -34,18 +34,7 @@
     <div class="container">
       <section class="card" style="padding: 22px;">
         <h1>Demos</h1>
-
-        <section style="margin-top: 20px;">
-          <h2>Low-code</h2>
-
-          <p>
-            <a href="/demos/lowcode/powerapp-ui-mock/">Power App UI Mock – Case Management</a>
-          </p>
-
-          <p>
-            <a href="/demos/lowcode-frontend-demo/">lowcode-frontend-demo</a>
-          </p>
-        </section>
+        <div id="demos-root"></div>
       </section>
     </div>
   </main>
@@ -75,7 +64,83 @@
     </div>
   </footer>
 
+  <script>
+    (function () {
+      var root = document.getElementById('demos-root');
+      var categoryOrder = ['Low-code', 'Automation', 'Data', 'UX/UI', 'Architecture'];
 
+      function renderDemoCard(demo) {
+        var card = document.createElement('article');
+        card.className = 'card';
+        card.style.padding = '16px';
+        card.style.marginTop = '12px';
+
+        var title = document.createElement('h3');
+        title.textContent = demo.title;
+
+        var description = document.createElement('p');
+        description.textContent = demo.description || '';
+
+        var actions = document.createElement('p');
+        var link = document.createElement('a');
+        link.className = 'btn';
+        link.href = demo.path;
+        link.textContent = 'Open demo';
+        actions.appendChild(link);
+
+        card.appendChild(title);
+        card.appendChild(description);
+        card.appendChild(actions);
+
+        return card;
+      }
+
+      function renderCategorySection(category, demos) {
+        var section = document.createElement('section');
+        section.style.marginTop = '20px';
+
+        var heading = document.createElement('h2');
+        heading.textContent = category;
+        section.appendChild(heading);
+
+        demos.forEach(function (demo) {
+          section.appendChild(renderDemoCard(demo));
+        });
+
+        return section;
+      }
+
+      fetch('./demos.json', { credentials: 'same-origin' })
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error(response.status + ' ' + response.statusText);
+          }
+          return response.json();
+        })
+        .then(function (demos) {
+          var grouped = demos.reduce(function (acc, demo) {
+            var key = demo.category || 'Other';
+            if (!acc[key]) {
+              acc[key] = [];
+            }
+            acc[key].push(demo);
+            return acc;
+          }, {});
+
+          categoryOrder.forEach(function (category) {
+            if (grouped[category] && grouped[category].length > 0) {
+              root.appendChild(renderCategorySection(category, grouped[category]));
+            }
+          });
+        })
+        .catch(function (error) {
+          console.warn('[demos] Failed to load demos.json', error);
+        });
+    })();
+  </script>
+
+  <script src="/assets/js/nav-active.js"></script>
 </body>
 
 </html>
+
