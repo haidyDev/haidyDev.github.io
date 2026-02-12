@@ -3,12 +3,20 @@
     "title": "Power App UI Mock – Case Management",
     "category": "Low-code",
     "path": "/demos/lowcode/powerapp-ui-mock/",
-    "description": "Low-code inspired form → gallery UI demo"
+    "description": "Low-code inspired form → gallery UI demo",
+    "tags": ["Power Platform", "Low-code", "UI"],
+    "stack": ["Power Platform", "HTML", "JavaScript"],
+    "focus": "Low-code UI patterns",
+    "level": "Learning project"
   },
   {
     "title": "Before/After: Booking System Architecture",
     "category": "Architecture",
     "path": "/demos/architecture/booking-system-before-after/",
-    "description": "Architecture thinking demo: current-state problems → proposed Power Platform solution with risks/mitigations."
+    "description": "Architecture thinking demo: current-state problems → proposed Power Platform solution with risks/mitigations.",
+    "tags": ["Power Platform", "Architecture", "Automation"],
+    "stack": ["Power Platform", "Dataverse", "Power Automate"],
+    "focus": "Architecture thinking",
+    "level": "Student project"
   }
 ]
