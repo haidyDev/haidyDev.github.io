@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Design System</title>
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/demos/frontend/design-system-mini/styles.css">
+</head>
+
+<body>
+    <div id="site-header"></div>
+
+    <main class="hero">
+        <div class="container ds-demo">
+            <section class="card panel">
+                <h1>Mini Design System</h1>
+                <p class="lead">
+                    Pieni UI-järjestelmädemo näyttää, miten yhtenäiset komponentit
+                    tukevat selkeää käyttökokemusta ja nopeampaa toteutusta.
+                </p>
+                <div class="actions">
+                    <a class="btn" href="/demos/">← Back to Demos</a>
+                    <a class="btn" href="/projects.html">Projektit</a>
+                </div>
+            </section>
+
+            <section class="card panel">
+                <h2>Buttons</h2>
+                <div class="row">
+                    <button type="button" class="btn primary">Primary</button>
+                    <button type="button" class="btn secondary">Secondary</button>
+                    <button type="button" class="btn ghost">Ghost</button>
+                </div>
+            </section>
+
+            <section class="card panel">
+                <h2>Form</h2>
+                <label for="demoInput" class="label">Email</label>
+                <input id="demoInput" type="email" placeholder="name@example.com">
+
+                <label class="toggle">
+                    <input id="errorToggle" type="checkbox">
+                    Show error state
+                </label>
+
+                <p id="inputError" class="error-msg" aria-live="polite"></p>
+            </section>
+
+            <section class="card panel">
+                <h2>Badges</h2>
+                <div class="row">
+                    <span class="badge">Default</span>
+                    <span class="badge accent">Accent</span>
+                    <span class="badge muted">Muted</span>
+                </div>
+            </section>
+
+            <section class="card panel">
+                <h2>Cards</h2>
+                <div class="card-grid">
+                    <article class="mini-card">
+                        <h3>Compact card</h3>
+                        <p>Käytä tiivistä korttia nopeaan status- tai summary-näkymään.</p>
+                    </article>
+                    <article class="mini-card">
+                        <h3>Detail card</h3>
+                        <p>Laajempi kortti toimii hyvin, kun tarvitaan enemmän kontekstia.</p>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="/demos/frontend/design-system-mini/script.js"></script>
+    <script src="/assets/js/includes.js"></script>
+    <script src="/assets/js/nav-active.js"></script>
+</body>
+
+</html>

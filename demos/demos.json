@@ -38,5 +38,15 @@
     "stack": ["Power Automate", "Logic", "JavaScript"],
     "focus": "Process design and controls",
     "level": "Learning project"
+  },
+  {
+    "title": "Mini Design System",
+    "category": "Frontend",
+    "path": "/demos/frontend/design-system-mini/",
+    "description": "UI consistency demo: reusable buttons, inputs, badges and card patterns.",
+    "tags": ["UI", "Frontend", "Accessibility"],
+    "stack": ["HTML", "CSS", "JavaScript"],
+    "focus": "Reusable UI components",
+    "level": "Learning project"
   }
 ]

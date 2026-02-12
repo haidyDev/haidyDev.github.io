@@ -1,0 +1,110 @@
+.ds-demo {
+    max-width: 960px;
+}
+
+.ds-demo .panel {
+    padding: 18px;
+    margin-bottom: 14px;
+}
+
+.ds-demo .lead {
+    margin-top: 0;
+    color: var(--muted);
+}
+
+.ds-demo .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.ds-demo .btn {
+    border: 1px solid var(--line);
+}
+
+.ds-demo .btn.secondary {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.ds-demo .btn.ghost {
+    background: transparent;
+}
+
+.ds-demo .btn:focus-visible,
+.ds-demo input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.ds-demo .label {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.ds-demo input[type="email"] {
+    width: 100%;
+    max-width: 360px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+}
+
+.ds-demo input[type="email"].is-error {
+    border-color: rgba(239, 68, 68, 0.8);
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.ds-demo .toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    color: var(--muted);
+}
+
+.ds-demo .error-msg {
+    min-height: 1.2em;
+    color: rgba(255, 165, 165, 0.95);
+}
+
+.ds-demo .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 0.82rem;
+}
+
+.ds-demo .badge.accent {
+    background: rgba(242, 210, 122, 0.2);
+    border-color: rgba(242, 210, 122, 0.5);
+}
+
+.ds-demo .badge.muted {
+    color: var(--muted);
+}
+
+.ds-demo .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+}
+
+.ds-demo .mini-card {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.ds-demo .mini-card h3 {
+    margin-top: 0;
+    margin-bottom: 6px;
+}
+
+.ds-demo .mini-card p {
+    margin: 0;
+    color: var(--muted);
+}
