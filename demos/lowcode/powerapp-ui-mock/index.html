@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power App UI Mock – Case Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="wrap">
+
+        <h1>Power App UI Mock – Case Management</h1>
+        <p class="lead">Power Apps -henkinen “form → gallery” -rakenne: lisää caseja ja hallitse statusta.</p>
+
+        <section class="card">
+            <h3>Add new case</h3>
+
+            <div class="formRow">
+                <input id="caseInput" placeholder="Case title">
+                <select id="statusSelect">
+                    <option value="New">New</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Done">Done</option>
+                </select>
+                <button class="primary" id="addBtn">Add</button>
+            </div>
+
+            <hr class="sep">
+
+            <h3>Case gallery</h3>
+            <div id="caseList" class="gallery"></div>
+            <div id="emptyState" class="empty">No cases yet. Add your first one above.</div>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+
+</html>
