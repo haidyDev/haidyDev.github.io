@@ -35,6 +35,7 @@
 
         <div class="actions">
           <a class="btn primary" href="projects.html">Katso projektit</a>
+          <a class="btn" href="/demos/">Explore demos</a>
           <a class="btn" href="about.html">Lue lisää</a>
         </div>
       </section>
@@ -47,7 +48,52 @@
     </div>
   </main>
 
+  <section class="hero" style="padding-top: 0;">
+    <div class="container">
+      <section class="card" style="padding: 18px;">
+        <h2 style="margin-top: 0;">Featured demos</h2>
+        <div id="featured-demos">
+          <p style="margin: 0;">Loading demos...</p>
+        </div>
+      </section>
+    </div>
+  </section>
+
   <div id="site-footer"></div>
+
+  <script>
+    (function () {
+      var target = document.getElementById('featured-demos');
+      if (!target) return;
+
+      fetch('/demos/demos.json', { credentials: 'same-origin' })
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error(response.status + ' ' + response.statusText);
+          }
+          return response.json();
+        })
+        .then(function (demos) {
+          target.innerHTML = '';
+
+          demos.slice(0, 3).forEach(function (demo) {
+            var row = document.createElement('p');
+            row.style.margin = '0 0 8px 0';
+
+            var link = document.createElement('a');
+            link.className = 'btn';
+            link.href = demo.path;
+            link.textContent = demo.title;
+
+            row.appendChild(link);
+            target.appendChild(row);
+          });
+        })
+        .catch(function () {
+          target.innerHTML = '<p style="margin: 0;">Unable to load featured demos.</p>';
+        });
+    })();
+  </script>
 
   <script src="/assets/js/includes.js"></script>
   <script src="/assets/js/nav-active.js"></script>
