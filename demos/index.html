@@ -120,6 +120,13 @@
             4. Iteroi ja opi
           </p>
         </article>
+        <article class="card" style="margin-top: 12px; padding: 16px;">
+          <h2>Osaamiskartta</h2>
+          <pre style="margin: 0;">UI &amp; UX        ███░░
+Automation     ████░
+Data &amp; SQL     ███░░
+Architecture   ██░░░</pre>
+        </article>
         <section class="card" style="margin-top: 12px; padding: 16px;">
           <h2>Miten lähestyn ratkaisuja</h2>
           <p style="margin: 0;">
@@ -303,6 +310,11 @@
       }
 
       function renderDemoCard(demo) {
+        var maturityLabels = {
+          foundation: 'Perustaso',
+          applied: 'Sovellettu',
+          advanced: 'Edistynyt'
+        };
         var card = document.createElement('article');
         card.className = 'card';
         card.style.padding = '16px';
@@ -318,6 +330,13 @@
 
         var description = document.createElement('p');
         description.textContent = demo.description || '';
+        var whyBlock = document.createElement('p');
+        whyBlock.style.margin = '8px 0 0 0';
+        whyBlock.style.fontSize = '0.85rem';
+        whyBlock.style.color = 'var(--muted)';
+        if (demo.why) {
+          whyBlock.textContent = 'Miksi tämä demo on tehty: ' + demo.why;
+        }
 
         var summaryRow = document.createElement('p');
         summaryRow.style.margin = '8px 0 0 0';
@@ -348,6 +367,20 @@
           levelLabel.style.border = '1px solid var(--line)';
           levelLabel.style.background = 'rgba(255, 255, 255, 0.06)';
           summaryRow.appendChild(levelLabel);
+        }
+
+        if (demo.maturity && maturityLabels[demo.maturity]) {
+          var maturityLabel = document.createElement('span');
+          maturityLabel.textContent = maturityLabels[demo.maturity];
+          maturityLabel.style.display = 'inline-block';
+          maturityLabel.style.fontSize = '0.78rem';
+          maturityLabel.style.padding = '4px 8px';
+          maturityLabel.style.marginRight = '6px';
+          maturityLabel.style.marginBottom = '6px';
+          maturityLabel.style.borderRadius = '999px';
+          maturityLabel.style.border = '1px solid var(--line)';
+          maturityLabel.style.background = 'rgba(255, 255, 255, 0.06)';
+          summaryRow.appendChild(maturityLabel);
         }
 
         var stackLine = document.createElement('p');
@@ -563,6 +596,9 @@
 
         card.appendChild(title);
         card.appendChild(description);
+        if (demo.why) {
+          card.appendChild(whyBlock);
+        }
         if (summaryRow.childNodes.length > 0) {
           card.appendChild(summaryRow);
         }
