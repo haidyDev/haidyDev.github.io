@@ -334,6 +334,18 @@
           stackLine.textContent = 'Stack: ' + demo.stack.join(' • ');
         }
 
+        var evidenceList = document.createElement('ul');
+        evidenceList.style.margin = '8px 0 0 18px';
+        evidenceList.style.padding = '0';
+        evidenceList.style.fontSize = '0.82rem';
+        evidenceList.style.color = 'var(--muted)';
+        (demo.evidence || []).forEach(function (item) {
+          var li = document.createElement('li');
+          li.textContent = item;
+          li.style.marginBottom = '2px';
+          evidenceList.appendChild(li);
+        });
+
         var tagsRow = document.createElement('p');
         tagsRow.style.marginTop = '8px';
 
@@ -423,6 +435,31 @@
         card.setAttribute('aria-controls', previewId);
 
         if (isExpanded) {
+          var previewEvidence = (demo.evidence || []).slice(0, 4);
+          if (previewEvidence.length > 0) {
+            var evidenceSection = document.createElement('div');
+            evidenceSection.style.padding = '12px';
+            evidenceSection.style.borderBottom = '1px solid var(--line)';
+
+            var evidenceTitle = document.createElement('h4');
+            evidenceTitle.style.margin = '0 0 8px 0';
+            evidenceTitle.textContent = 'Mitä tämä osoittaa';
+            evidenceSection.appendChild(evidenceTitle);
+
+            var evidenceList = document.createElement('ul');
+            evidenceList.style.margin = '0 0 0 18px';
+            evidenceList.style.padding = '0';
+            evidenceList.style.fontSize = '0.9rem';
+            previewEvidence.forEach(function (item) {
+              var li = document.createElement('li');
+              li.textContent = item;
+              evidenceList.appendChild(li);
+            });
+
+            evidenceSection.appendChild(evidenceList);
+            previewWrap.appendChild(evidenceSection);
+          }
+
           var iframe = document.createElement('iframe');
           iframe.src = demo.path;
           iframe.title = demo.title + ' preview';
@@ -507,6 +544,9 @@
         }
         if (stackLine.textContent) {
           card.appendChild(stackLine);
+        }
+        if (evidenceList.childNodes.length > 0) {
+          card.appendChild(evidenceList);
         }
         card.appendChild(tagsRow);
         card.appendChild(actions);

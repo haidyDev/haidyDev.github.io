@@ -57,6 +57,12 @@
     "tags": ["SQL", "Data", "Analysis"],
     "stack": ["SQL", "Data modelling"],
     "focus": "Relational query thinking",
-    "level": "Learning project"
+    "level": "Learning project",
+    "evidence": [
+      "Relational data understanding",
+      "Business questions -> SQL queries",
+      "JOIN and aggregation logic",
+      "Solution-oriented data thinking"
+    ]
   }
 ]
