@@ -303,6 +303,10 @@
         };
         var card = document.createElement('article');
         card.className = 'card';
+        if (demo.featured === true) {
+          card.className += ' featured-card';
+          card.style.border = '1px solid var(--accent)';
+        }
         card.style.padding = '16px';
         card.style.marginTop = '12px';
         card.style.cursor = 'pointer';
@@ -313,6 +317,17 @@
 
         var title = document.createElement('h3');
         title.textContent = demo.title;
+        if (demo.featured === true) {
+          var featuredLabel = document.createElement('span');
+          featuredLabel.textContent = 'Aloita tästä';
+          featuredLabel.style.display = 'inline-block';
+          featuredLabel.style.fontSize = '0.78rem';
+          featuredLabel.style.padding = '4px 8px';
+          featuredLabel.style.marginBottom = '8px';
+          featuredLabel.style.borderRadius = '999px';
+          featuredLabel.style.border = '1px solid var(--accent)';
+          card.appendChild(featuredLabel);
+        }
 
         var description = document.createElement('p');
         description.textContent = demo.description || '';
