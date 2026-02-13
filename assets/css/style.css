@@ -211,6 +211,40 @@ footer{
   gap: 8px;
 }
 
+#backToTop{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 999;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.24);
+  transition: opacity 180ms ease, transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+#backToTop.is-visible{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+#backToTop:hover,
+#backToTop:focus-visible{
+  background: rgba(255,255,255,0.14);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.28);
+  transform: translateY(-2px);
+}
+
 /* =========================
    Responsive
 ========================= */
@@ -252,7 +286,10 @@ footer{
 
   .btn:hover,
   .btn:focus-visible,
-  .card:hover{
+  .card:hover,
+  #backToTop,
+  #backToTop:hover,
+  #backToTop:focus-visible{
     transform: none !important;
   }
 }
