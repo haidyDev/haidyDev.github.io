@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="fi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Orders Analysis</title>
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/demos/data/sql-orders-analysis/styles.css">
+</head>
+
+<body>
+    <div id="site-header"></div>
+
+    <main class="hero">
+        <div class="container sql-demo">
+            <section class="card">
+                <h1>Customer Orders Analysis</h1>
+                <p class="lead">
+                    Lyhyt SQL-ajattelun demo, jossa yhdistetään asiakkaat, tilaukset ja tuotteet
+                    sekä tarkastellaan ostokäyttäytymistä relaatioiden kautta.
+                </p>
+
+                <div class="actions">
+                    <a class="btn" href="/demos/">← Back to Demos</a>
+                    <a class="btn" href="/projects.html">Projektit</a>
+                </div>
+            </section>
+
+            <section class="card panel">
+                <h2>Data model overview</h2>
+                <p style="margin-bottom: 8px;">
+                    Customers (1) ---- (N) Orders<br>
+                    Orders (N) ---- (1) Products
+                </p>
+                <p style="margin-bottom: 0;"><strong>Primary keys:</strong></p>
+                <p style="margin-bottom: 0;">
+                    - customer_id<br>
+                    - order_id<br>
+                    - product_id
+                </p>
+            </section>
+
+            <section class="card panel">
+                <h2>SQL-kyselyt</h2>
+                <p class="hint">Valitse näkymä. Aktiivinen kysely korostuu.</p>
+                <p class="query-switches">
+                    <button class="btn query-btn is-active" type="button" data-query-target="join-view">1) JOIN customers and orders</button>
+                    <button class="btn query-btn" type="button" data-query-target="spend-view">2) Total spend per customer</button>
+                    <button class="btn query-btn" type="button" data-query-target="top-products-view">3) Top products by revenue</button>
+                </p>
+
+                <article class="query-view is-active" id="join-view">
+                    <h3>1) JOIN customers and orders</h3>
+                    <p><strong>Business question:</strong> "Mitkä tilaukset kuuluvat mille asiakkaalle?"</p>
+                    <pre><code>SELECT
+  c.customer_id,
+  c.customer_name,
+  o.order_id,
+  o.order_date,
+  o.total_amount
+FROM Customers c
+INNER JOIN Orders o
+  ON c.customer_id = o.customer_id
+ORDER BY o.order_date DESC;</code></pre>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>customer_id</th>
+                                <th>customer_name</th>
+                                <th>order_id</th>
+                                <th>order_date</th>
+                                <th>total_amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>C001</td>
+                                <td>Nordic Care Oy</td>
+                                <td>O104</td>
+                                <td>2026-01-12</td>
+                                <td>410.00</td>
+                            </tr>
+                            <tr>
+                                <td>C002</td>
+                                <td>Visio Labs</td>
+                                <td>O103</td>
+                                <td>2026-01-10</td>
+                                <td>190.00</td>
+                            </tr>
+                            <tr>
+                                <td>C001</td>
+                                <td>Nordic Care Oy</td>
+                                <td>O101</td>
+                                <td>2026-01-05</td>
+                                <td>240.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
+
+                <article class="query-view" id="spend-view">
+                    <h3>2) Total spend per customer (GROUP BY)</h3>
+                    <p><strong>Business question:</strong> "Kuka käyttää eniten rahaa?"</p>
+                    <pre><code>SELECT
+  c.customer_id,
+  c.customer_name,
+  SUM(o.total_amount) AS total_spend
+FROM Customers c
+LEFT JOIN Orders o
+  ON c.customer_id = o.customer_id
+GROUP BY
+  c.customer_id,
+  c.customer_name
+ORDER BY total_spend DESC;</code></pre>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>customer_id</th>
+                                <th>customer_name</th>
+                                <th>total_spend</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>C001</td>
+                                <td>Nordic Care Oy</td>
+                                <td>650.00</td>
+                            </tr>
+                            <tr>
+                                <td>C003</td>
+                                <td>Blue Port Ltd</td>
+                                <td>520.00</td>
+                            </tr>
+                            <tr>
+                                <td>C002</td>
+                                <td>Visio Labs</td>
+                                <td>190.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
+
+                <article class="query-view" id="top-products-view">
+                    <h3>3) Top products by revenue</h3>
+                    <p><strong>Business question:</strong> "Mitkä tuotteet tuottavat eniten liikevaihtoa?"</p>
+                    <pre><code>SELECT
+  p.product_id,
+  p.product_name,
+  SUM(oi.quantity * oi.unit_price) AS revenue
+FROM Products p
+INNER JOIN OrderItems oi
+  ON p.product_id = oi.product_id
+GROUP BY
+  p.product_id,
+  p.product_name
+ORDER BY revenue DESC
+LIMIT 3;</code></pre>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>product_id</th>
+                                <th>product_name</th>
+                                <th>revenue</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>P010</td>
+                                <td>Automation Kit</td>
+                                <td>760.00</td>
+                            </tr>
+                            <tr>
+                                <td>P007</td>
+                                <td>Reporting Pack</td>
+                                <td>410.00</td>
+                            </tr>
+                            <tr>
+                                <td>P003</td>
+                                <td>UI Theme Bundle</td>
+                                <td>190.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
+            </section>
+
+            <section class="card panel">
+                <h2>Mitä tämä osoittaa</h2>
+                <p style="margin-bottom: 0;">
+                    • Ymmärrän relaatiomallin perusidean (avaimet ja suhteet)<br>
+                    • Osaan vastata liiketoimintakysymyksiin SQL-kyselyillä<br>
+                    • JOIN + GROUP BY + aggregoinnit käytännössä<br>
+                    • Ajattelen dataa osana ratkaisun kokonaisuutta
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="/demos/data/sql-orders-analysis/script.js"></script>
+    <script src="/assets/js/includes.js"></script>
+    <script src="/assets/js/nav-active.js"></script>
+</body>
+
+</html>

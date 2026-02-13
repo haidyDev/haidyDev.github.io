@@ -48,5 +48,15 @@
     "stack": ["HTML", "CSS", "JavaScript"],
     "focus": "Reusable UI components",
     "level": "Learning project"
+  },
+  {
+    "title": "SQL Orders Analysis",
+    "category": "Data",
+    "path": "/demos/data/sql-orders-analysis/",
+    "description": "Relational query demo for customer orders analysis.",
+    "tags": ["SQL", "Data", "Analysis"],
+    "stack": ["SQL", "Data modelling"],
+    "focus": "Relational query thinking",
+    "level": "Learning project"
   }
 ]

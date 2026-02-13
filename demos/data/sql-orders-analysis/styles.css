@@ -1,0 +1,95 @@
+.sql-demo {
+    max-width: 980px;
+}
+
+.sql-demo .card {
+    padding: 18px;
+}
+
+.sql-demo .lead {
+    margin-top: 0;
+    color: var(--muted);
+}
+
+.sql-demo .panel {
+    margin-top: 14px;
+}
+
+.sql-demo .hint {
+    margin-top: 0;
+    color: var(--muted);
+}
+
+.sql-demo .query-switches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 12px 0;
+}
+
+.sql-demo .query-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--line);
+    color: var(--text);
+    border-radius: 12px;
+    padding: 8px 14px;
+    transition: all 0.15s ease;
+}
+
+.sql-demo .query-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+}
+
+.sql-demo .query-btn.is-active {
+    background: rgba(242, 210, 122, 0.18);
+    border-color: var(--accent);
+    color: #1a1a1a;
+}
+
+.sql-demo .query-view {
+    display: none;
+}
+
+.sql-demo .query-view.is-active {
+    display: block;
+}
+
+.sql-demo pre {
+    margin: 0 0 12px 0;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    overflow-x: auto;
+}
+
+.sql-demo code {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
+.sql-demo table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.sql-demo th,
+.sql-demo td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+}
+
+.sql-demo th {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.sql-demo tbody tr:last-child td {
+    border-bottom: 0;
+}
