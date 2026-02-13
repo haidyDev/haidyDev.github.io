@@ -43,6 +43,59 @@
           <label for="demoSearchInput"><strong>Search demos:</strong></label>
           <input id="demoSearchInput" type="search" placeholder="Search by title, tag, stack, focus..." style="margin-top: 8px; width: 100%; max-width: 460px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255, 255, 255, 0.06); color: var(--text);">
         </div>
+        <article class="card" style="margin-top: 12px; padding: 16px;">
+          <h2>Osaamisnäytteet – ratkaisukeskeinen ajattelu</h2>
+          <p style="margin-bottom: 0;">
+            Nämä näytteet kuvaavat tapaani jäsentää ongelmia,
+            rakentaa ratkaisuja ja yhdistää käyttöliittymä,
+            automaatiot ja datalogiikka toimivaksi kokonaisuudeksi.
+          </p>
+          <p style="margin-bottom: 0;">
+            Fokus ei ole yksittäisessä työkalussa,
+            vaan ratkaisun toimivuudessa.
+          </p>
+        </article>
+        <article class="card" style="margin-top: 12px; padding: 16px;">
+          <h2>Ratkaisuprofiili</h2>
+          <p style="margin-bottom: 0;">
+            Rakennan käytännönläheisiä digitaalisia ratkaisuja
+            yhdistämällä käyttöliittymän, automaation ja datan.
+          </p>
+          <p style="margin-bottom: 0;">
+            Tavoitteena ei ole pelkkä toteutus,
+            vaan toimiva kokonaisuus.
+          </p>
+        </article>
+        <article class="card" style="margin-top: 12px; padding: 16px;">
+          <h2>Aloita tästä</h2>
+          <p>Jos sinulla on 2 minuuttia:</p>
+          <p style="margin-bottom: 0;">
+            👉 <a href="/demos/architecture/booking-system-before-after/" data-keep-query="true">Arkkitehtuuri-ajattelu</a><br>
+            👉 <a href="/demos/automation/invoice-triage-flow/" data-keep-query="true">Automaatio</a><br>
+            👉 <a href="/demos/data/json-transform-pipeline/" data-keep-query="true">Data &amp; logiikka</a>
+          </p>
+        </article>
+        <article class="card" style="margin-top: 12px; padding: 16px;">
+          <h2>Harjoitteluhaku</h2>
+          <p>
+            Etsin harjoittelupaikkaa (Power Platform / low-code),
+            jossa pääsen rakentamaan käyttäjälähtöisiä sovelluksia
+            ja automaatioita osana oikeita kokonaisuuksia.
+          </p>
+          <p style="margin-bottom: 0;">
+            <a class="btn" href="mailto:heidi.maunu@gmail.com">Ota yhteyttä</a>
+            <a class="btn" href="https://www.linkedin.com/in/heidimaunu/" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+        </article>
+        <section class="card" style="margin-top: 12px; padding: 16px;">
+          <h2>Miten lähestyn ratkaisuja</h2>
+          <p style="margin: 0;">
+            <button class="btn" type="button" data-solution-category="Frontend/UI" data-solution-fallback="Frontend">🧩 Käyttöliittymä</button>
+            <button class="btn" type="button" data-solution-category="Automation">⚙️ Automaatio</button>
+            <button class="btn" type="button" data-solution-category="Architecture">🏗️ Arkkitehtuuri</button>
+            <button class="btn" type="button" data-solution-category="Data">📊 Data &amp; logiikka</button>
+          </p>
+        </section>
         <div id="filters" style="margin-top: 12px;">
           <p style="margin: 0 0 8px 0;">
             <strong>Filter:</strong>
@@ -92,6 +145,7 @@
       var categoryFiltersRoot = document.getElementById('category-filters');
       var tagFiltersRoot = document.getElementById('tag-filters');
       var showAllBtn = document.getElementById('showAllBtn');
+      var solutionCategoryButtons = document.querySelectorAll('[data-solution-category]');
       var categoryOrder = ['Low-code', 'Automation', 'Data', 'UX/UI', 'Architecture'];
       var INTERACTION_KEY = 'portfolio_interactions';
       var SESSION_KEY = 'demos_session_state';
@@ -1078,6 +1132,30 @@
         });
       }
 
+      function bindSolutionCategories() {
+        solutionCategoryButtons.forEach(function (button) {
+          button.addEventListener('click', function () {
+            var requestedCategory = button.getAttribute('data-solution-category');
+            var fallbackCategory = button.getAttribute('data-solution-fallback');
+            var hasRequestedCategory = state.demos.some(function (demo) {
+              return demo.category === requestedCategory;
+            });
+            var targetCategory = hasRequestedCategory ? requestedCategory : fallbackCategory || requestedCategory;
+            var existingCategoryBtn = document.querySelector('[data-filter-type="category"][data-filter-value="' + targetCategory + '"]');
+
+            if (existingCategoryBtn) {
+              existingCategoryBtn.click();
+              return;
+            }
+
+            state.category = targetCategory;
+            trackEvent('filter_used', { filter: 'category', value: targetCategory });
+            updateURLFromFilter();
+            renderDemos();
+          });
+        });
+      }
+
       showLoadingState();
       bindScrollPersistence();
 
@@ -1096,6 +1174,7 @@
           applyFilterFromURL();
           applySavedSessionState(loadSessionState());
           renderFilters();
+          bindSolutionCategories();
           bindSearch();
           renderDemos();
         })
