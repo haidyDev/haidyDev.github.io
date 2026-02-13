@@ -1,76 +1,72 @@
 # heidimaunu.github.io
-Personal portfolio (Power Platform / low-code) – work in progress
-# Heidi Maunu – Portfolio
+# Heidi Maunu – Low-code / Power Platform Portfolio
 
-Henkilökohtainen portfolio Microsoft Power Platform- ja low-code-opintoihin.  
-Tämä repositorio sisältää GitHub Pages -sivuston, jossa esittelen oppimisprojekteja,
-kevyitä työnäytteitä ja opintojen aikana kertyvää osaamista.
+Personal portfolio showcasing solution-oriented learning projects in Microsoft Power Platform, low-code development, automation and data thinking.
 
-🌐 Live-sivusto: https://haidydev.github.io
+🌐 Live portfolio: https://haidydev.github.io
 
 ---
 
-## Portfoliosta
+## About
 
-Opiskelen parhaillani **Microsoft Power Platformia ja low-code-kehitystä**
-Taitotalossa (01–08/2026) ja etsin **työharjoittelupaikkaa**, jossa pääsen
-kehittämään käytännönläheisiä, käyttäjälähtöisiä digitaalisia ratkaisuja osana
-oikeita prosesseja.
+Opiskelen Microsoft Power Platformia ja low-code-kehitystä Taitotalossa (01–08/2026).
 
-Portfolio on tarkoituksella **work in progress**:
-- projekteja lisätään vaiheittain
-- painopiste on logiikan, rakenteen ja käytettävyyden ymmärtämisessä
-- dokumentaatio on rehellistä ja oppimista tukevaa
+Tavoitteeni on kehittyä ratkaisukeskeiseksi low-code osaajaksi,
+joka yhdistää käyttöliittymän, automaation ja datalogiikan toimiviksi kokonaisuuksiksi.
+
+Etsin työharjoittelupaikkaa, jossa pääsen rakentamaan käytännönläheisiä digitaalisia ratkaisuja osana oikeita prosesseja.
 
 ---
 
-## Esittelyssä oleva projekti
+## Portfolio structure
 
-### Input → Validation → Output (Frontend-demo)
+Portfolio ei ole pelkkä projektikokoelma, vaan esittelee ajattelumallia:
 
-Pieni frontend-demo, joka mallintaa **Power Apps -tyyppistä logiikkaa**
-ilman varsinaista Power Platform -ympäristöä.
+- UI thinking
+- Automation thinking
+- Data & SQL logic
+- Architecture mindset
 
-🔗 Live-demo:  
-https://haidydev.github.io/demos/lowcode-frontend-demo/
-
-**Mitä demo näyttää**
-- käyttäjän syötteen käsittely
-- validointisäännöt
-- sovelluksen tila ja käyttäjäpalautteet
-- logiikan ja esitystavan erottaminen toisistaan
-
-**Low-code-vastaavuus**
-- JavaScript `if / return` → Power Fx `If()`
-- syötteen trimmaus ja pituustarkistus → datan validointi ennen käsittelyä
-- viestien näyttäminen → `Notify()` / Label-pohjainen palaute
-- tapahtumakuuntelijat → Button `OnSelect`
+🔗 Demos hub:
+https://haidydev.github.io/demos/
 
 ---
 
-## Miten työskentelen
+## Featured demos
 
-- Pilkon ongelmat pieniksi, hallittaviksi kokonaisuuksiksi
-- Etenen vaiheittain ja varmistan toimivuuden ennen seuraavaa askelta
-- Dokumentoin tekemistä ja oppimista selkeästi
-- Ajattelen ratkaisuja low-code-näkökulmasta:
-  *mitä voidaan yksinkertaistaa, automatisoida tai mallintaa järkevästi*
+Examples include:
 
----
-
-## Seuraavat askeleet
-
-- lisää low-code-ajattelua tukevia työnäytteitä
-- simuloituja Dataverse-tietomalleja
-- Power Automate -tyylisiä prosessikuvauksia
-- Power Platform -projekteja opintojen edetessä
+- Input → Validation → Output (Power Apps style logic simulation)
+- Automation process thinking
+- SQL data analysis (business questions → queries)
+- Architecture-oriented solution modelling
 
 ---
 
-## Yhteystiedot
+## Working approach
 
-- 📧 Sähköposti: heidi.maunu@gmail.com  
-- 🔗 LinkedIn: https://www.linkedin.com/in/heidimaunu/
+- Pilkon ongelmat pieniksi kokonaisuuksiksi
+- Keskityn käytettävyyteen ja rakenteeseen
+- Mallinnan ratkaisuja ennen teknistä toteutusta
+- Ajattelen low-code näkökulmasta: yksinkertaista, automatisoi, selkeytä
+
+---
+
+## Status
+
+Portfolio is actively evolving.
+
+Painopiste:
+- solution thinking
+- learning transparency
+- practical experimentation
+
+---
+
+## Contact
+
+📧 heidi.maunu@gmail.com  
+🔗 https://www.linkedin.com/in/heidimaunu/
 
 ---
 
