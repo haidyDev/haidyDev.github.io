@@ -56,63 +56,59 @@
           Alla konkreettisia teknisiä toteutuksia ja
           arkkitehtuuriajattelua kuvaavia näytteitä.
         </p>
-        <div style="margin-top: 12px;">
-          <label for="demoSearchInput"><strong>Search demos:</strong></label>
-          <input id="demoSearchInput" type="search" placeholder="Search by title, tag, stack, focus..." style="margin-top: 8px; width: 100%; max-width: 460px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255, 255, 255, 0.06); color: var(--text);">
-        </div>
-        <article class="card" style="margin-top: 12px; padding: 16px;">
-          <h2>Osaamisnäytteet – ratkaisukeskeinen ajattelu</h2>
-          <p style="margin-bottom: 0;">
-            Nämä näytteet kuvaavat tapaani jäsentää ongelmia,
-            rakentaa ratkaisuja ja yhdistää käyttöliittymä,
-            automaatiot ja datalogiikka toimivaksi kokonaisuudeksi.
-          </p>
-          <p style="margin-bottom: 0;">
-            Fokus ei ole yksittäisessä työkalussa,
-            vaan ratkaisun toimivuudessa.
-          </p>
-        </article>
-        <article class="card" style="margin-top: 12px; padding: 16px;">
-          <h2>Ratkaisuprofiili</h2>
-          <p style="margin-bottom: 0;">
-            Rakennan käytännönläheisiä digitaalisia ratkaisuja
-            yhdistämällä käyttöliittymän, automaation ja datan.
-          </p>
-          <p style="margin-bottom: 0;">
-            Tavoitteena ei ole pelkkä toteutus,
-            vaan toimiva kokonaisuus.
-          </p>
-        </article>
         <article id="start" class="card" style="margin-top: 12px; padding: 16px;">
           <h2>Aloita tästä</h2>
-          <p>Jos sinulla on 2 minuuttia:</p>
+          <p>
+            Rakennan käytännönläheisiä digitaalisia ratkaisuja
+            yhdistämällä käyttöliittymän, automaation ja datan.
+            Tavoitteena ei ole pelkkä toteutus, vaan toimiva kokonaisuus.
+          </p>
           <p style="margin-bottom: 0;">
+            <strong>Jos sinulla on 2 minuuttia:</strong><br>
             👉 <a href="/demos/architecture/booking-system-before-after/" data-keep-query="true">Arkkitehtuuri-ajattelu</a><br>
             👉 <a href="/demos/automation/invoice-triage-flow/" data-keep-query="true">Automaatio</a><br>
             👉 <a href="/demos/data/json-transform-pipeline/" data-keep-query="true">Data &amp; logiikka</a>
           </p>
-        </article>
-        <article class="card" style="margin-top: 12px; padding: 16px;">
-          <h2>Harjoitteluhaku</h2>
           <p>
-            Etsin harjoittelupaikkaa (Power Platform / low-code),
-            jossa pääsen rakentamaan käyttäjälähtöisiä sovelluksia
-            ja automaatioita osana oikeita kokonaisuuksia.
+            Etsin harjoittelupaikkaa (Power Platform / low-code), jossa pääsen
+            rakentamaan käyttäjälähtöisiä sovelluksia ja automaatioita osana oikeita kokonaisuuksia.
           </p>
           <p style="margin-bottom: 0;">
             <a class="btn" href="mailto:heidi.maunu@gmail.com">Ota yhteyttä</a>
             <a class="btn" href="https://www.linkedin.com/in/heidimaunu/" target="_blank" rel="noopener">LinkedIn</a>
           </p>
-        </article>
-        <article class="card" style="margin-top: 12px; padding: 16px;">
-          <h2>Mihin rooleihin osaamiseni sopii</h2>
           <p style="margin-bottom: 0;">
+            <strong>Mihin rooleihin osaamiseni sopii:</strong><br>
             • Power Platform kehittäjä (junior)<br>
             • Low-code ratkaisujen rakentaja<br>
             • Automaatio ja prosessikehitys<br>
             • Tuleva Solution Architect -suunta
           </p>
         </article>
+        <div style="margin-top: 12px;">
+          <label for="demoSearchInput"><strong>Search demos:</strong></label>
+          <input id="demoSearchInput" type="search" placeholder="Search by title, tag, stack, focus..." style="margin-top: 8px; width: 100%; max-width: 460px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255, 255, 255, 0.06); color: var(--text);">
+        </div>
+        <div id="filters" style="margin-top: 12px;">
+          <p style="margin: 0 0 8px 0;">
+            <strong>Filter:</strong>
+            <button class="btn" id="showAllBtn" type="button" style="margin-left: 8px;">Show all</button>
+          </p>
+          <p id="category-filters" style="margin: 0 0 8px 0;"></p>
+          <p id="tag-filters" style="margin: 0;"></p>
+        </div>
+        <div id="comparison-panel"></div>
+        <div id="demos-status" class="card" style="margin-top: 12px; padding: 14px; display: none;"></div>
+        <div id="demos-root"></div>
+        <section class="card" style="margin-top: 12px; padding: 16px;">
+          <h2>Miten lähestyn ratkaisuja</h2>
+          <p style="margin: 0;">
+            <button class="btn" type="button" data-solution-category="Frontend/UI" data-solution-fallback="Frontend">🧩 Käyttöliittymä</button>
+            <button class="btn" type="button" data-solution-category="Automation">⚙️ Automaatio</button>
+            <button class="btn" type="button" data-solution-category="Architecture">🏗️ Arkkitehtuuri</button>
+            <button class="btn" type="button" data-solution-category="Data">📊 Data &amp; logiikka</button>
+          </p>
+        </section>
         <article class="card" style="margin-top: 12px; padding: 16px;">
           <h2>Oppimisen suunta</h2>
           <p style="margin-bottom: 0;">
@@ -137,26 +133,6 @@
             4. Iteroi ja opi
           </p>
         </article>
-        <section class="card" style="margin-top: 12px; padding: 16px;">
-          <h2>Miten lähestyn ratkaisuja</h2>
-          <p style="margin: 0;">
-            <button class="btn" type="button" data-solution-category="Frontend/UI" data-solution-fallback="Frontend">🧩 Käyttöliittymä</button>
-            <button class="btn" type="button" data-solution-category="Automation">⚙️ Automaatio</button>
-            <button class="btn" type="button" data-solution-category="Architecture">🏗️ Arkkitehtuuri</button>
-            <button class="btn" type="button" data-solution-category="Data">📊 Data &amp; logiikka</button>
-          </p>
-        </section>
-        <div id="filters" style="margin-top: 12px;">
-          <p style="margin: 0 0 8px 0;">
-            <strong>Filter:</strong>
-            <button class="btn" id="showAllBtn" type="button" style="margin-left: 8px;">Show all</button>
-          </p>
-          <p id="category-filters" style="margin: 0 0 8px 0;"></p>
-          <p id="tag-filters" style="margin: 0;"></p>
-        </div>
-        <div id="comparison-panel"></div>
-        <div id="demos-status" class="card" style="margin-top: 12px; padding: 14px; display: none;"></div>
-        <div id="demos-root"></div>
       </section>
     </div>
   </main>
