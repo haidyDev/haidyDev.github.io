@@ -7,7 +7,13 @@
     "tags": ["Power Platform", "Low-code", "UI"],
     "stack": ["Power Platform", "HTML", "JavaScript"],
     "focus": "Low-code UI patterns",
-    "level": "Learning project"
+    "level": "Learning project",
+    "evidence": [
+      "Form-to-list UX flow",
+      "Low-code style UI composition",
+      "Validation and data entry thinking",
+      "User-first case handling view"
+    ]
   },
   {
     "title": "Before/After: Booking System Architecture",
@@ -17,7 +23,13 @@
     "tags": ["Power Platform", "Architecture", "Automation"],
     "stack": ["Power Platform", "Dataverse", "Power Automate"],
     "focus": "Architecture thinking",
-    "level": "Student project"
+    "level": "Student project",
+    "evidence": [
+      "Current-state vs target-state analysis",
+      "Risk and mitigation mapping",
+      "System boundaries and integration points",
+      "Business process to solution design"
+    ]
   },
   {
     "title": "JSON Transform Pipeline",
@@ -27,7 +39,13 @@
     "tags": ["Data", "Logic", "JavaScript"],
     "stack": ["JavaScript", "JSON", "HTML"],
     "focus": "Data transformation thinking",
-    "level": "Learning project"
+    "level": "Learning project",
+    "evidence": [
+      "Input-output data mapping",
+      "Transformation pipeline logic",
+      "Error handling for malformed data",
+      "Readable structured output"
+    ]
   },
   {
     "title": "Invoice Triage Flow",
@@ -37,7 +55,13 @@
     "tags": ["Automation", "Process", "Security"],
     "stack": ["Power Automate", "Logic", "JavaScript"],
     "focus": "Process design and controls",
-    "level": "Learning project"
+    "level": "Learning project",
+    "evidence": [
+      "Rule-based routing logic",
+      "Approval flow design",
+      "Exception path handling",
+      "Process controls and traceability"
+    ]
   },
   {
     "title": "Mini Design System",
@@ -47,7 +71,13 @@
     "tags": ["UI", "Frontend", "Accessibility"],
     "stack": ["HTML", "CSS", "JavaScript"],
     "focus": "Reusable UI components",
-    "level": "Learning project"
+    "level": "Learning project",
+    "evidence": [
+      "Reusable component patterns",
+      "Consistent visual language",
+      "Accessible UI basics",
+      "Scalable frontend structure"
+    ]
   },
   {
     "title": "SQL Orders Analysis",
@@ -62,7 +92,8 @@
       "Relational data understanding",
       "Business questions -> SQL queries",
       "JOIN and aggregation logic",
-      "Solution-oriented data thinking"
+      "Solution-oriented data thinking",
+      "Readable query result interpretation"
     ]
   }
 ]
