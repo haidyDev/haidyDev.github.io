@@ -8,9 +8,9 @@
 
     function updateVisibility() {
       if (window.scrollY > 400) {
-        button.classList.add('is-visible');
+        button.classList.add('visible');
       } else {
-        button.classList.remove('is-visible');
+        button.classList.remove('visible');
       }
     }
 
