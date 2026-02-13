@@ -111,6 +111,15 @@
             • Enterprise-level design thinking
           </p>
         </article>
+        <article class="card" style="margin-top: 12px; padding: 16px;">
+          <h2>Miten rakennan ratkaisuja</h2>
+          <p style="margin-bottom: 0;">
+            1. Ymmärrä ongelma<br>
+            2. Mallinna ratkaisu<br>
+            3. Rakenna prototyyppi<br>
+            4. Iteroi ja opi
+          </p>
+        </article>
         <section class="card" style="margin-top: 12px; padding: 16px;">
           <h2>Miten lähestyn ratkaisuja</h2>
           <p style="margin: 0;">
@@ -917,7 +926,13 @@
       }
 
       function buildOrderedEntries(filtered) {
-        var grouped = filtered.reduce(function (acc, demo) {
+        var featured = filtered.filter(function (demo) {
+          return demo.featured === true;
+        });
+        var nonFeatured = filtered.filter(function (demo) {
+          return demo.featured !== true;
+        });
+        var grouped = nonFeatured.reduce(function (acc, demo) {
           var key = demo.category || 'Other';
           if (!acc[key]) {
             acc[key] = [];
@@ -931,6 +946,9 @@
           .concat(Object.keys(grouped).filter(function (category) { return categoryOrder.indexOf(category) === -1; }));
 
         var entries = [];
+        featured.forEach(function (demo) {
+          entries.push({ category: 'Featured demos', demo: demo });
+        });
         orderedCategories.forEach(function (category) {
           grouped[category].forEach(function (demo) {
             entries.push({ category: category, demo: demo });

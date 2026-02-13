@@ -18,6 +18,7 @@
   {
     "title": "Before/After: Booking System Architecture",
     "category": "Architecture",
+    "featured": true,
     "path": "/demos/architecture/booking-system-before-after/",
     "description": "Architecture thinking demo: current-state problems → proposed Power Platform solution with risks/mitigations.",
     "tags": ["Power Platform", "Architecture", "Automation"],
@@ -50,6 +51,7 @@
   {
     "title": "Invoice Triage Flow",
     "category": "Automation",
+    "featured": true,
     "path": "/demos/automation/invoice-triage-flow/",
     "description": "Automation-thinking demo: routing invoices through validation and approvals.",
     "tags": ["Automation", "Process", "Security"],
@@ -82,6 +84,7 @@
   {
     "title": "SQL Orders Analysis",
     "category": "Data",
+    "featured": true,
     "path": "/demos/data/sql-orders-analysis/",
     "description": "Relational query demo for customer orders analysis.",
     "tags": ["SQL", "Data", "Analysis"],
