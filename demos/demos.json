@@ -5,6 +5,11 @@
     "path": "/demos/lowcode/powerapp-ui-mock/",
     "description": "Low-code inspired form → gallery UI demo",
     "why": "Näyttää, miten low-code-ajattelu kääntyy käytännön käyttöliittymäratkaisuksi.",
+    "use_cases": [
+      "Sisäinen case-käsittelytiimin työjono",
+      "Asiakaspalvelun tapausten tilaseuranta"
+    ],
+    "why_now": "Rakensin tämän näyttääkseni, miten low-code UI tukee arjen case-työtä.",
     "tags": ["Power Platform", "Low-code", "UI"],
     "stack": ["Power Platform", "HTML", "JavaScript"],
     "focus": "Low-code UI patterns",
@@ -24,6 +29,11 @@
     "path": "/demos/architecture/booking-system-before-after/",
     "description": "Architecture thinking demo: current-state problems → proposed Power Platform solution with risks/mitigations.",
     "why": "Havainnollistaa, miten nykytila-analyysista edetään perusteltuun tavoitetilan arkkitehtuuriin.",
+    "use_cases": [
+      "Varausprosessin modernisoinnin suunnittelupohja",
+      "Järjestelmärajapintojen riskien arviointi"
+    ],
+    "why_now": "Tämä osoittaa, että pystyn perustelemaan arkkitehtuurivalinnat liiketoiminnan tarpeista.",
     "tags": ["Power Platform", "Architecture", "Automation"],
     "stack": ["Power Platform", "Dataverse", "Power Automate"],
     "focus": "Architecture thinking",
@@ -42,6 +52,11 @@
     "path": "/demos/data/json-transform-pipeline/",
     "description": "Simple data transformation demo illustrating logic flow.",
     "why": "Tekee datan muunnoslogiikan vaiheittain näkyväksi ja helposti arvioitavaksi.",
+    "use_cases": [
+      "API-vastausten muunnos raportointimuotoon",
+      "Integraatiodatan validointi ennen tallennusta"
+    ],
+    "why_now": "Rakensin tämän, jotta datalogiikka on helposti testattava ja ymmärrettävä.",
     "tags": ["Data", "Logic", "JavaScript"],
     "stack": ["JavaScript", "JSON", "HTML"],
     "focus": "Data transformation thinking",
@@ -61,6 +76,11 @@
     "path": "/demos/automation/invoice-triage-flow/",
     "description": "Automation-thinking demo: routing invoices through validation and approvals.",
     "why": "Näyttää, miten toistuva prosessi automatisoidaan hallitusti sääntöjen ja hyväksyntöjen kautta.",
+    "use_cases": [
+      "Saapuvien laskujen automaattinen reititys",
+      "Poikkeuslaskujen ohjaus manuaaliseen käsittelyyn"
+    ],
+    "why_now": "Tämä näyttää, miten automaatio vähentää käsityötä ja virheitä.",
     "tags": ["Automation", "Process", "Security"],
     "stack": ["Power Automate", "Logic", "JavaScript"],
     "focus": "Process design and controls",
@@ -79,6 +99,11 @@
     "path": "/demos/frontend/design-system-mini/",
     "description": "UI consistency demo: reusable buttons, inputs, badges and card patterns.",
     "why": "Osoittaa, miten yhtenäinen komponenttipohja parantaa käyttöliittymän ylläpidettävyyttä.",
+    "use_cases": [
+      "Yhtenäinen UI sisäiseen työkalukokonaisuuteen",
+      "Nopea prototypointi samoilla komponenteilla"
+    ],
+    "why_now": "Rakensin tämän, jotta käyttöliittymät pysyvät johdonmukaisina projektista toiseen.",
     "tags": ["UI", "Frontend", "Accessibility"],
     "stack": ["HTML", "CSS", "JavaScript"],
     "focus": "Reusable UI components",
@@ -98,6 +123,11 @@
     "path": "/demos/data/sql-orders-analysis/",
     "description": "Relational query demo for customer orders analysis.",
     "why": "Demonstroi, miten liiketoimintakysymykset muutetaan SQL-kyselyiksi päätöksenteon tueksi.",
+    "use_cases": [
+      "Myynnin trendien analyysi asiakasryhmittäin",
+      "Toimitusviiveiden syiden tunnistaminen"
+    ],
+    "why_now": "Tämä osoittaa, miten SQL:llä tuotetaan päätöksenteon kannalta selkeää tietoa.",
     "tags": ["SQL", "Data", "Analysis"],
     "stack": ["SQL", "Data modelling"],
     "focus": "Relational query thinking",

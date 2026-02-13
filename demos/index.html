@@ -344,8 +344,8 @@
         whyBlock.style.margin = '8px 0 0 0';
         whyBlock.style.fontSize = '0.85rem';
         whyBlock.style.color = 'var(--muted)';
-        if (demo.why) {
-          whyBlock.textContent = 'Miksi tämä demo on tehty: ' + demo.why;
+        if (demo.why_now) {
+          whyBlock.textContent = 'Miksi tämä on tehty: ' + demo.why_now;
         }
 
         var summaryRow = document.createElement('p');
@@ -502,6 +502,31 @@
         card.setAttribute('aria-controls', previewId);
 
         if (isExpanded) {
+          var previewUseCases = (demo.use_cases || []).slice(0, 4);
+          if (previewUseCases.length > 0) {
+            var useCasesSection = document.createElement('div');
+            useCasesSection.style.padding = '12px';
+            useCasesSection.style.borderBottom = '1px solid var(--line)';
+
+            var useCasesTitle = document.createElement('h4');
+            useCasesTitle.style.margin = '0 0 8px 0';
+            useCasesTitle.textContent = 'Mihin tämä sopii';
+            useCasesSection.appendChild(useCasesTitle);
+
+            var useCasesList = document.createElement('ul');
+            useCasesList.style.margin = '0 0 0 18px';
+            useCasesList.style.padding = '0';
+            useCasesList.style.fontSize = '0.9rem';
+            previewUseCases.forEach(function (item) {
+              var li = document.createElement('li');
+              li.textContent = item;
+              useCasesList.appendChild(li);
+            });
+
+            useCasesSection.appendChild(useCasesList);
+            previewWrap.appendChild(useCasesSection);
+          }
+
           var previewEvidence = (demo.evidence || []).slice(0, 4);
           if (previewEvidence.length > 0) {
             var evidenceSection = document.createElement('div');
@@ -606,7 +631,7 @@
 
         card.appendChild(title);
         card.appendChild(description);
-        if (demo.why) {
+        if (demo.why_now) {
           card.appendChild(whyBlock);
         }
         if (summaryRow.childNodes.length > 0) {
