@@ -1,7 +1,6 @@
-# heidimaunu.github.io
 # Heidi Maunu – Low-code / Power Platform Portfolio
 
-Personal portfolio showcasing solution-oriented learning projects in Microsoft Power Platform, low-code development, automation and data thinking.
+Ratkaisukeskeinen portfolio, joka näyttää miten yhdistän käyttöliittymän, automaation ja datan toimiviksi kokonaisuuksiksi.
 
 🌐 Live portfolio: https://haidydev.github.io
 
@@ -18,6 +17,16 @@ Etsin työharjoittelupaikkaa, jossa pääsen rakentamaan käytännönläheisiä 
 
 ---
 
+## Aloita tästä
+
+Jos haluat nopean kokonaiskuvan:
+
+1. Avaa demos hub: https://haidydev.github.io/demos/
+2. Katso arkkitehtuuri- ja automaationäytteet
+3. Tarkista data/SQL-ajattelun esimerkit
+
+---
+
 ## Portfolio structure
 
 Portfolio ei ole pelkkä projektikokoelma, vaan esittelee ajattelumallia:
@@ -27,7 +36,7 @@ Portfolio ei ole pelkkä projektikokoelma, vaan esittelee ajattelumallia:
 - Data & SQL logic
 - Architecture mindset
 
-🔗 Demos hub:
+🔗 Demos hub:  
 https://haidydev.github.io/demos/
 
 ---
