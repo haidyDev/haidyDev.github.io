@@ -43,7 +43,7 @@
     </div>
   </header>
 
-  <main id="main" class="hero">
+  <main id="main" tabindex="-1" class="hero">
     <div class="container">
       <section class="card" style="padding: 22px;">
         <div class="card" style="position: sticky; top: 0; z-index: 6; background: rgba(11,18,32,0.9); font-size: 14px; padding: 6px 12px; margin: 0 0 12px 0;">
@@ -107,6 +107,7 @@
           <p id="category-filters" style="margin: 0 0 8px 0;"></p>
           <p id="tag-filters" style="margin: 0;"></p>
         </div>
+        <p id="resultsStatus" class="visually-hidden" aria-live="polite"></p>
         <div id="comparison-panel"></div>
         <div id="demos-status" class="card" style="margin-top: 12px; padding: 14px; display: none;"></div>
         <div id="demos-root"></div>
@@ -178,6 +179,7 @@
       var comparisonPanel = document.getElementById('comparison-panel');
       var statusBox = document.getElementById('demos-status');
       var searchInput = document.getElementById('demoSearchInput');
+      var resultsStatus = document.getElementById('resultsStatus');
       var categoryFiltersRoot = document.getElementById('category-filters');
       var tagFiltersRoot = document.getElementById('tag-filters');
       var showAllBtn = document.getElementById('showAllBtn');
@@ -195,6 +197,7 @@
         comparisonPaths: [],
         lastTrackedSearch: '',
         pinnedPath: null,
+        previewTrigger: null,
         pendingScrollY: null,
         hasRestoredScroll: false,
         scrollSaveTimer: null,
@@ -303,6 +306,15 @@
           .map(function (item) {
             return item.demo;
           });
+      }
+
+      function buildPreviewId(path) {
+        return 'preview-' + btoa(encodeURIComponent(path)).replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+      }
+
+      function updateResultsStatus(count) {
+        if (!resultsStatus) return;
+        resultsStatus.textContent = 'Näkyvissä ' + count + ' näytettä';
       }
 
       function renderDemoCard(demo) {
@@ -454,13 +466,13 @@
         previewBtn.className = 'btn';
         previewBtn.type = 'button';
         previewBtn.textContent = state.openPreviewPath === demo.path ? 'Hide preview' : 'Preview';
-        var previewId = 'preview-' + btoa(encodeURIComponent(demo.path)).replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+        var previewId = buildPreviewId(demo.path);
         var isExpanded = state.openPreviewPath === demo.path;
         previewBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
         previewBtn.setAttribute('aria-controls', previewId);
         previewBtn.addEventListener('click', function (event) {
           event.stopPropagation();
-          togglePreview(demo.path, true);
+          togglePreview(demo.path, true, previewBtn);
         });
         actions.appendChild(previewBtn);
 
@@ -498,6 +510,7 @@
         previewWrap.style.overflow = 'hidden';
         previewWrap.style.display = isExpanded ? 'block' : 'none';
         previewWrap.hidden = !isExpanded;
+        previewWrap.setAttribute('tabindex', '-1');
         previewWrap.setAttribute('aria-label', demo.title + ' preview panel');
         card.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
         card.setAttribute('aria-controls', previewId);
@@ -596,7 +609,7 @@
           if (event.target.closest('a, button, iframe, input, label')) {
             return;
           }
-          togglePreview(demo.path, true);
+          togglePreview(demo.path, true, card);
         });
 
         card.addEventListener('keydown', function (event) {
@@ -606,7 +619,7 @@
 
           if (event.key === 'Enter') {
             event.preventDefault();
-            togglePreview(demo.path, true);
+            togglePreview(demo.path, true, card);
             return;
           }
 
@@ -678,19 +691,39 @@
 
       function closePreview(restoreFocus, focusPath) {
         if (!state.openPreviewPath) return;
+        var previousPath = focusPath || state.openPreviewPath;
         state.openPreviewPath = null;
         state.pinnedPath = focusPath || null;
         saveSessionState();
         renderDemos();
-        if (restoreFocus && focusPath) {
-          focusCardByPath(focusPath);
+        if (restoreFocus && previousPath) {
+          var trigger = state.previewTrigger;
+          if (trigger && trigger.path === previousPath && trigger.type === 'previewButton') {
+            var previewButton = document.querySelector('[data-demo-path="' + previousPath + '"] button[aria-controls="' + buildPreviewId(previousPath) + '"]');
+            if (previewButton) {
+              previewButton.focus();
+            } else {
+              focusCardByPath(previousPath);
+            }
+          } else {
+            focusCardByPath(previousPath);
+          }
         }
+        state.previewTrigger = null;
       }
 
-      function togglePreview(path, restoreFocus) {
+      function togglePreview(path, restoreFocus, triggerElement) {
         var opening = state.openPreviewPath !== path;
         state.openPreviewPath = opening ? path : null;
         state.pinnedPath = path;
+        if (opening) {
+          state.previewTrigger = {
+            path: path,
+            type: triggerElement && triggerElement.tagName === 'BUTTON' ? 'previewButton' : 'card'
+          };
+        } else {
+          state.previewTrigger = null;
+        }
         saveSessionState();
         if (opening) {
           var previewDemo = state.demos.find(function (demo) { return demo.path === path; });
@@ -700,7 +733,12 @@
           });
         }
         renderDemos();
-        if (restoreFocus) {
+        if (opening) {
+          var previewPanel = document.getElementById(buildPreviewId(path));
+          if (previewPanel) {
+            previewPanel.focus();
+          }
+        } else if (restoreFocus) {
           focusCardByPath(path);
         }
       }
@@ -1193,6 +1231,7 @@
         renderComparisonPanel();
 
         var filtered = getFilteredDemos();
+        updateResultsStatus(filtered.length);
         if (!filtered.length) {
           showEmptyState();
           updateFilterButtonStates();
@@ -1310,8 +1349,18 @@
         });
       }
 
+      function bindEscapeToClosePreview() {
+        document.addEventListener('keydown', function (event) {
+          if (event.key !== 'Escape') return;
+          if (!state.openPreviewPath) return;
+          event.preventDefault();
+          closePreview(true, state.openPreviewPath);
+        });
+      }
+
       showLoadingState();
       bindScrollPersistence();
+      bindEscapeToClosePreview();
 
       fetch('./demos.json', { credentials: 'same-origin' })
         .then(function (response) {
