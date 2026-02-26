@@ -1,4 +1,4 @@
-const inputEl = document.getElementById("jsonInput");
+﻿const inputEl = document.getElementById("jsonInput");
 const outputEl = document.getElementById("jsonOutput");
 const transformBtn = document.getElementById("transformBtn");
 
@@ -22,13 +22,13 @@ function runTransform() {
     try {
         const parsed = JSON.parse(inputEl.value);
         if (!Array.isArray(parsed)) {
-            throw new Error("Input must be a JSON array.");
+            throw new Error("Syötteen on oltava JSON-taulukko.");
         }
 
         const result = transformData(parsed);
         outputEl.textContent = JSON.stringify(result, null, 2);
     } catch (error) {
-        outputEl.textContent = "Error: " + error.message;
+        outputEl.textContent = "Virhe: " + error.message;
     }
 }
 
@@ -36,3 +36,4 @@ inputEl.value = JSON.stringify(sampleData, null, 2);
 runTransform();
 
 transformBtn.addEventListener("click", runTransform);
+

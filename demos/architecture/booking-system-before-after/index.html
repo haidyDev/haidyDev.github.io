@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Before/After: Booking System Architecture</title>
+    <title>Ennen/Jälkeen: Varausjärjestelmän arkkitehtuuri</title>
 
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/demos/architecture/booking-system-before-after/styles.css">
@@ -16,56 +16,56 @@
     <main id="main" tabindex="-1" class="hero">
         <div class="container booking-demo">
             <section class="card demo-intro">
-                <h1>Before/After: Booking System Architecture</h1>
+                <h1>Ennen/Jälkeen: Varausjärjestelmän arkkitehtuuri</h1>
                 <p class="lead">
-                    Architecture thinking demo: current-state pain points and a
-                    proposed Power Platform target design.
+                    Arkkitehtuuriajattelun demo: nykytilan kipupisteet ja
+                    ehdotettu Power Platform -pohjainen tavoiteratkaisu.
                 </p>
 
-                <div class="actions" aria-label="Page actions">
-                    <a class="btn" id="backToDemosLink" href="/demos/">← Back to Demos</a>
-                    <a class="btn" href="/projects.html">Projects</a>
-                    <button class="btn" id="toggleViewsBtn" type="button">Toggle Before/After</button>
+                <div class="actions" aria-label="Sivun toiminnot">
+                    <a class="btn" id="backToDemosLink" href="/demos/">← Takaisin osaamisnäytteisiin</a>
+                    <a class="btn" href="/projects.html">Projektit</a>
+                    <button class="btn" id="toggleViewsBtn" type="button">Vaihda Ennen/Jälkeen</button>
                 </div>
             </section>
 
             <section class="card demo-section" id="beforeSection">
-                <h2>Before (current state)</h2>
+                <h2>Ennen (nykytila)</h2>
                 <ul>
-                    <li>Bookings are managed in multiple spreadsheets and email chains.</li>
-                    <li>Status tracking is inconsistent, so teams duplicate work.</li>
-                    <li>No single source of truth for customer, reservation, and payment data.</li>
-                    <li>Manual handoffs cause delays and missed updates for end users.</li>
+                    <li>Varauksia hallitaan useissa taulukoissa ja sähköpostiketjuissa.</li>
+                    <li>Tilan seuranta on epäyhtenäistä, joten tiimit tekevät päällekkäistä työtä.</li>
+                    <li>Asiakas-, varaus- ja maksutiedoille ei ole yhtä yhteistä tietolähdettä.</li>
+                    <li>Manuaaliset siirrot aiheuttavat viiveitä ja puuttuvia päivityksiä käyttäjille.</li>
                 </ul>
             </section>
 
             <section class="card demo-section" id="afterSection">
-                <h2>After (proposed solution)</h2>
+                <h2>Jälkeen (ehdotettu ratkaisu)</h2>
                 <ul>
-                    <li>Model booking data in Dataverse with clear ownership and validation rules.</li>
-                    <li>Use a Power App for booking intake, updates, and status visibility.</li>
-                    <li>Automate notifications and approvals with Power Automate flows.</li>
-                    <li>Provide role-based dashboards for operations and customer service.</li>
+                    <li>Mallinna varausdata Dataverseen selkeällä omistajuudella ja validointisäännöillä.</li>
+                    <li>Käytä Power Appia varausten syöttöön, päivityksiin ja tilan näkyvyyteen.</li>
+                    <li>Automatisoi ilmoitukset ja hyväksynnät Power Automate -virroilla.</li>
+                    <li>Tarjoa roolikohtaiset koontinäkymät operatiiviseen työhön ja asiakaspalveluun.</li>
                 </ul>
             </section>
 
             <section class="card demo-section">
-                <h2>Key decisions</h2>
+                <h2>Keskeiset päätökset</h2>
                 <ul>
-                    <li>Prioritize a normalized data model before UI complexity.</li>
-                    <li>Separate process automation from UI logic for maintainability.</li>
-                    <li>Define a minimal first release focused on core booking lifecycle.</li>
-                    <li>Use environment strategy (dev/test/prod) from the start.</li>
+                    <li>Priorisoi normalisoitu tietomalli ennen käyttöliittymän monimutkaisuutta.</li>
+                    <li>Erota prosessiautomaatio käyttöliittymälogiikasta ylläpidettävyyden vuoksi.</li>
+                    <li>Määrittele rajattu ensimmäinen julkaisu varauselinkaaren ydinkohtiin.</li>
+                    <li>Ota ympäristöstrategia (dev/test/prod) käyttöön alusta asti.</li>
                 </ul>
             </section>
 
             <section class="card demo-section">
-                <h2>Risks & mitigations</h2>
+                <h2>Riskit ja hallintakeinot</h2>
                 <ul>
-                    <li>Risk: Scope creep. Mitigation: strict MVP boundaries and backlog triage.</li>
-                    <li>Risk: Data quality issues. Mitigation: validation rules and import cleanup flow.</li>
-                    <li>Risk: Low adoption. Mitigation: role-based training and pilot rollout.</li>
-                    <li>Risk: Flow failures. Mitigation: alerting, retries, and support runbooks.</li>
+                    <li>Riski: Laajuus kasvaa hallitsemattomasti. Hallinta: tiukat MVP-rajat ja backlog-triage.</li>
+                    <li>Riski: Datan laatuongelmat. Hallinta: validointisäännöt ja tuontidatan siivousvirta.</li>
+                    <li>Riski: Matala käyttöönotto. Hallinta: roolikohtainen koulutus ja pilottijulkaisu.</li>
+                    <li>Riski: Virtojen epäonnistumiset. Hallinta: hälytykset, uudelleenyritykset ja tukiohjeet.</li>
                 </ul>
             </section>
         </div>

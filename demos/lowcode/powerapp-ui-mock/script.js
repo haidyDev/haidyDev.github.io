@@ -1,4 +1,4 @@
-const addBtn = document.getElementById("addBtn");
+﻿const addBtn = document.getElementById("addBtn");
 const caseInput = document.getElementById("caseInput");
 const statusSelect = document.getElementById("statusSelect");
 const caseList = document.getElementById("caseList");
@@ -29,8 +29,8 @@ function loadCases() {
 }
 
 function statusToBadgeClass(status) {
-    if (status === "New") return "new";
-    if (status === "In Progress") return "progress";
+    if (status === "New" || status === "Uusi") return "new";
+    if (status === "In Progress" || status === "Työn alla") return "progress";
     return "done";
 }
 
@@ -58,7 +58,7 @@ function render() {
 
         const del = document.createElement("button");
         del.className = "ghost";
-        del.textContent = "Delete";
+        del.textContent = "Poista";
         del.addEventListener("click", () => {
             cases = cases.filter(c => c.id !== item.id);
             saveCases();
@@ -78,7 +78,7 @@ addBtn.addEventListener("click", () => {
     const status = statusSelect.value;
 
     if (!title) {
-        alert("Add case title");
+        alert("Lisää tapauksen otsikko");
         return;
     }
 
@@ -99,3 +99,4 @@ addBtn.addEventListener("click", () => {
 // initial load + render
 loadCases();
 render();
+

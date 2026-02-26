@@ -1,4 +1,4 @@
-const amountInput = document.getElementById("invoiceAmount");
+﻿const amountInput = document.getElementById("invoiceAmount");
 const vendorInput = document.getElementById("vendorName");
 const suspiciousSelect = document.getElementById("suspicious");
 const runFlowBtn = document.getElementById("runFlowBtn");
@@ -30,45 +30,46 @@ function runFlow() {
     const amount = Number(amountInput.value);
     const vendor = vendorInput.value.trim();
     const suspicious = suspiciousSelect.value === "yes";
-    const steps = ["Receive invoice"];
+    const steps = ["Vastaanota lasku"];
 
     if (!vendor || !Number.isFinite(amount) || amount <= 0) {
-        steps.push("Validate input");
-        steps.push("Reject: missing required fields");
-        steps.push("Archive as rejected");
-        renderFlow(steps, "Rejected", "rejected");
+        steps.push("Validoi syöte");
+        steps.push("Hylkää: pakollisia kenttiä puuttuu");
+        steps.push("Arkistoi hylättynä");
+        renderFlow(steps, "Hylätty", "rejected");
         return;
     }
 
     if (!isVendorValid(vendor)) {
-        steps.push("Validate vendor");
-        steps.push("Reject: invalid vendor");
-        steps.push("Archive as rejected");
-        renderFlow(steps, "Rejected", "rejected");
+        steps.push("Validoi toimittaja");
+        steps.push("Hylkää: virheellinen toimittaja");
+        steps.push("Arkistoi hylättynä");
+        renderFlow(steps, "Hylätty", "rejected");
         return;
     }
 
-    steps.push("Validate invoice");
+    steps.push("Validoi lasku");
 
     if (suspicious) {
-        steps.push("Route to manual review");
-        steps.push("Security check");
-        steps.push("Approve/Reject by reviewer");
-        renderFlow(steps, "Manual review", "review");
+        steps.push("Ohjaa manuaaliseen tarkistukseen");
+        steps.push("Tietoturvatarkistus");
+        steps.push("Tarkistajan hyväksyntä/hylkäys");
+        renderFlow(steps, "Manuaalinen tarkistus", "review");
         return;
     }
 
     if (amount > APPROVAL_THRESHOLD) {
-        steps.push("Assign manager approval");
-        steps.push("Manager decision");
-        steps.push("Archive");
-        renderFlow(steps, "Manager approval", "review");
+        steps.push("Ohjaa esihenkilön hyväksyntään");
+        steps.push("Esihenkilön päätös");
+        steps.push("Arkistoi");
+        renderFlow(steps, "Esihenkilön hyväksyntä", "review");
         return;
     }
 
-    steps.push("Auto approve");
-    steps.push("Archive");
-    renderFlow(steps, "Approved", "approved");
+    steps.push("Hyväksy automaattisesti");
+    steps.push("Arkistoi");
+    renderFlow(steps, "Hyväksytty", "approved");
 }
 
 runFlowBtn.addEventListener("click", runFlow);
+

@@ -31,14 +31,14 @@
     <div class="container nav-inner">
       <div class="brand">
         <span class="name">Heidi Maunu</span>
-        <span class="role">Power Platform / low-code student portfolio</span>
+        <span class="role">Power Platform / low-code -opiskelijaportfolio</span>
       </div>
 
       <nav class="nav-links">
         <a href="/index.html">Etusivu</a>
         <a href="/projects.html">Projektit</a>
-        <a href="/demos/">Näytteet</a>
-        <a href="/about.html">Minusta</a>
+        <a href="/demos/">Osaamisnäytteet</a>
+        <a href="/about.html">Tietoa</a>
       </nav>
     </div>
   </header>
@@ -47,13 +47,13 @@
     <div class="container">
       <section class="card" style="padding: 22px;">
         <div class="card" style="position: sticky; top: 0; z-index: 6; background: rgba(11,18,32,0.9); font-size: 14px; padding: 6px 12px; margin: 0 0 12px 0;">
-          <a href="/demos/" data-keep-query="true">← Näytteet</a>
+          <a href="/demos/" data-keep-query="true">← Osaamisnäytteet</a>
           &nbsp;·&nbsp;
           <a href="#start">Aloita tästä</a>
           &nbsp;·&nbsp;
           <a href="/projects.html">Projektit</a>
           &nbsp;·&nbsp;
-          <a href="/about.html">Minusta</a>
+          <a href="/about.html">Tietoa</a>
         </div>
         <div class="card" style="position: sticky; top: 0; z-index: 5; margin: 0 0 12px 0; padding: 10px 12px;">
           <strong>Heidi Maunu | Low-code &amp; Power Platform | Harjoitteluhaku</strong><br>
@@ -84,7 +84,7 @@
             rakentamaan käyttäjälähtöisiä sovelluksia ja automaatioita osana oikeita kokonaisuuksia.
           </p>
           <p style="margin-bottom: 0;">
-            <a class="btn" href="mailto:heidi.maunu@gmail.com">Ota yhteyttä</a>
+            <a class="btn" href="mailto:heidi.maunu@gmail.com">Yhteys</a>
             <a class="btn" href="https://www.linkedin.com/in/heidimaunu/" target="_blank" rel="noopener">LinkedIn</a>
           </p>
           <p style="margin-bottom: 0;">
@@ -97,12 +97,12 @@
         </article>
         <div style="margin-top: 12px;">
           <label for="demoSearchInput"><strong>Hae näytteistä</strong></label>
-          <input id="demoSearchInput" type="search" placeholder="Search by title, tag, stack, focus..." style="margin-top: 8px; width: 100%; max-width: 460px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255, 255, 255, 0.06); color: var(--text);">
+          <input id="demoSearchInput" type="search" placeholder="Hae otsikolla, tagilla, teknologialla tai fokuksella..." style="margin-top: 8px; width: 100%; max-width: 460px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255, 255, 255, 0.06); color: var(--text);">
         </div>
         <div id="filters" style="margin-top: 12px;">
           <p style="margin: 0 0 8px 0;">
-            <strong>Filter:</strong>
-            <button class="btn" id="showAllBtn" type="button" style="margin-left: 8px;">Show all</button>
+            <strong>Suodatin:</strong>
+            <button class="btn" id="showAllBtn" type="button" style="margin-left: 8px;">Näytä kaikki</button>
           </p>
           <p id="category-filters" style="margin: 0 0 8px 0;"></p>
           <p id="tag-filters" style="margin: 0;"></p>
@@ -115,9 +115,9 @@
           <h2>Miten lähestyn ratkaisuja</h2>
           <p style="margin: 0;">
             <button class="btn" type="button" data-solution-category="Frontend/UI" data-solution-fallback="Frontend">🧩 Käyttöliittymä</button>
-            <button class="btn" type="button" data-solution-category="Automation">⚙️ Automaatio</button>
-            <button class="btn" type="button" data-solution-category="Architecture">🏗️ Arkkitehtuuri</button>
-            <button class="btn" type="button" data-solution-category="Data">📊 Data &amp; logiikka</button>
+            <button class="btn" type="button" data-solution-category="Automaatio">⚙️ Automaatio</button>
+            <button class="btn" type="button" data-solution-category="Arkkitehtuuri">🏗️ Arkkitehtuuri</button>
+            <button class="btn" type="button" data-solution-category="Data &amp; logiikka">📊 Data &amp; logiikka</button>
           </p>
         </section>
         <article class="card" style="margin-top: 12px; padding: 16px;">
@@ -130,9 +130,9 @@
           </p>
           <p style="margin-bottom: 0;">
             Seuraavaksi syvennän:<br>
-            • Solution architecture<br>
-            • Data modelling<br>
-            • Enterprise-level design thinking
+            • Ratkaisuarkkitehtuuri<br>
+            • Tietomallinnus<br>
+            • Kokonaisvaltainen suunnitteluajattelu
           </p>
         </article>
         <article class="card" style="margin-top: 12px; padding: 16px;">
@@ -184,7 +184,7 @@
       var tagFiltersRoot = document.getElementById('tag-filters');
       var showAllBtn = document.getElementById('showAllBtn');
       var solutionCategoryButtons = document.querySelectorAll('[data-solution-category]');
-      var categoryOrder = ['Low-code', 'Automation', 'Data', 'UX/UI', 'Architecture'];
+      var categoryOrder = ['Low-code', 'Automaatio', 'Data & logiikka', 'Käyttöliittymä', 'Arkkitehtuuri'];
       var INTERACTION_KEY = 'portfolio_interactions';
       var SESSION_KEY = 'demos_session_state';
       var LAZY_BATCH_SIZE = 6;
@@ -366,7 +366,7 @@
 
         if (demo.focus) {
           var focusLabel = document.createElement('span');
-          focusLabel.textContent = 'Focus: ' + demo.focus;
+          focusLabel.textContent = 'Fokus: ' + demo.focus;
           focusLabel.style.display = 'inline-block';
           focusLabel.style.fontSize = '0.78rem';
           focusLabel.style.padding = '4px 8px';
@@ -380,7 +380,7 @@
 
         if (demo.level) {
           var levelLabel = document.createElement('span');
-          levelLabel.textContent = 'Level: ' + demo.level;
+          levelLabel.textContent = 'Taso: ' + demo.level;
           levelLabel.style.display = 'inline-block';
           levelLabel.style.fontSize = '0.78rem';
           levelLabel.style.padding = '4px 8px';
@@ -411,7 +411,7 @@
         stackLine.style.fontSize = '0.82rem';
         stackLine.style.color = 'var(--muted)';
         if ((demo.stack || []).length > 0) {
-          stackLine.textContent = 'Stack: ' + demo.stack.join(' • ');
+          stackLine.textContent = 'Teknologiat: ' + demo.stack.join(' • ');
         }
 
         var evidenceList = document.createElement('ul');
@@ -452,7 +452,7 @@
         link.className = 'btn';
         link.href = demo.path;
         link.setAttribute('data-keep-query', 'true');
-        link.textContent = 'Open demo';
+        link.textContent = 'Avaa demo';
         link.addEventListener('click', function () {
           trackEvent('demo_link_click', {
             title: demo.title,
@@ -465,7 +465,7 @@
         var previewBtn = document.createElement('button');
         previewBtn.className = 'btn';
         previewBtn.type = 'button';
-        previewBtn.textContent = state.openPreviewPath === demo.path ? 'Hide preview' : 'Preview';
+        previewBtn.textContent = state.openPreviewPath === demo.path ? 'Piilota esikatselu' : 'Esikatselu';
         var previewId = buildPreviewId(demo.path);
         var isExpanded = state.openPreviewPath === demo.path;
         previewBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
@@ -486,7 +486,7 @@
         var compareCheckbox = document.createElement('input');
         compareCheckbox.type = 'checkbox';
         compareCheckbox.checked = state.comparisonPaths.indexOf(demo.path) !== -1;
-        compareCheckbox.setAttribute('aria-label', 'Compare ' + demo.title);
+        compareCheckbox.setAttribute('aria-label', 'Vertaa ' + demo.title);
         compareCheckbox.addEventListener('click', function (event) {
           event.stopPropagation();
         });
@@ -496,7 +496,7 @@
         });
 
         var compareText = document.createElement('span');
-        compareText.textContent = 'Compare';
+        compareText.textContent = 'Vertaa';
 
         compareLabel.appendChild(compareCheckbox);
         compareLabel.appendChild(compareText);
@@ -816,11 +816,11 @@
         table.style.fontSize = '0.9rem';
 
         var fields = [
-          { label: 'Title', key: 'title' },
-          { label: 'Focus', key: 'focus' },
-          { label: 'Stack', key: 'stack' },
-          { label: 'Category', key: 'category' },
-          { label: 'Level', key: 'level' }
+          { label: 'Otsikko', key: 'title' },
+          { label: 'Fokus', key: 'focus' },
+          { label: 'Teknologiat', key: 'stack' },
+          { label: 'Kategoria', key: 'category' },
+          { label: 'Taso', key: 'level' }
         ];
 
         fields.forEach(function (field) {
@@ -1057,7 +1057,7 @@
 
         var entries = [];
         featured.forEach(function (demo) {
-          entries.push({ category: 'Featured demos', demo: demo });
+          entries.push({ category: 'Nostot', demo: demo });
         });
         orderedCategories.forEach(function (category) {
           grouped[category].forEach(function (demo) {
@@ -1192,7 +1192,7 @@
       function showLoadingState() {
         root.innerHTML = '';
         statusBox.style.display = 'block';
-        statusBox.innerHTML = '<p style="margin: 0;">Loading demos...</p>';
+        statusBox.innerHTML = '<p style="margin: 0;">Ladataan...</p>';
       }
 
       function showEmptyState() {
@@ -1202,7 +1202,7 @@
 
         var message = document.createElement('p');
         message.style.margin = '0';
-        message.textContent = 'No demos match current filters.';
+        message.textContent = 'Yksikään osaamisnäyte ei vastaa nykyisiä suodattimia.';
         statusBox.appendChild(message);
 
         var actions = document.createElement('p');
@@ -1211,7 +1211,7 @@
         var resetBtn = document.createElement('button');
         resetBtn.className = 'btn';
         resetBtn.type = 'button';
-        resetBtn.textContent = 'Reset filters';
+        resetBtn.textContent = 'Nollaa suodattimet';
         resetBtn.addEventListener('click', function () {
           resetAllFilters();
           renderDemos();
@@ -1259,7 +1259,7 @@
 
         if (sortedCategories.length > 0) {
           var categoryLabel = document.createElement('strong');
-          categoryLabel.textContent = 'Categories: ';
+          categoryLabel.textContent = 'Kategoriat: ';
           categoryFiltersRoot.appendChild(categoryLabel);
         }
 
@@ -1286,7 +1286,7 @@
 
         if (tags.length > 0) {
           var tagLabel = document.createElement('strong');
-          tagLabel.textContent = 'Tags: ';
+          tagLabel.textContent = 'Tagit: ';
           tagFiltersRoot.appendChild(tagLabel);
         }
 
@@ -1383,7 +1383,7 @@
         })
         .catch(function (error) {
           statusBox.style.display = 'block';
-          statusBox.innerHTML = '<p style="margin: 0;">Failed to load demos.</p>';
+          statusBox.innerHTML = '<p style="margin: 0;">Osaamisnäytteiden lataus epäonnistui.</p>';
           console.warn('[demos] Failed to load demos.json', error);
         });
     })();
@@ -1397,6 +1397,8 @@
 </body>
 
 </html>
+
+
 
 
 

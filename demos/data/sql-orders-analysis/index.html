@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="fi">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQL Orders Analysis</title>
+    <title>SQL-tilausanalyysi</title>
 
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/demos/data/sql-orders-analysis/styles.css">
@@ -16,25 +16,25 @@
     <main id="main" tabindex="-1" class="hero">
         <div class="container sql-demo">
             <section class="card">
-                <h1>Customer Orders Analysis</h1>
+                <h1>Asiakastilausten analyysi</h1>
                 <p class="lead">
                     Lyhyt SQL-ajattelun demo, jossa yhdistetään asiakkaat, tilaukset ja tuotteet
                     sekä tarkastellaan ostokäyttäytymistä relaatioiden kautta.
                 </p>
 
                 <div class="actions">
-                    <a class="btn" href="/demos/">← Back to Demos</a>
+                    <a class="btn" href="/demos/">← Takaisin osaamisnäytteisiin</a>
                     <a class="btn" href="/projects.html">Projektit</a>
                 </div>
             </section>
 
             <section class="card panel">
-                <h2>Data model overview</h2>
+                <h2>Tietomallin yleiskuva</h2>
                 <p style="margin-bottom: 8px;">
                     Customers (1) ---- (N) Orders<br>
                     Orders (N) ---- (1) Products
                 </p>
-                <p style="margin-bottom: 0;"><strong>Primary keys:</strong></p>
+                <p style="margin-bottom: 0;"><strong>Pääavaimet:</strong></p>
                 <p style="margin-bottom: 0;">
                     - customer_id<br>
                     - order_id<br>
@@ -46,14 +46,14 @@
                 <h2>SQL-kyselyt</h2>
                 <p class="hint">Valitse näkymä. Aktiivinen kysely korostuu.</p>
                 <p class="query-switches">
-                    <button class="btn query-btn is-active" type="button" data-query-target="join-view">1) JOIN customers and orders</button>
-                    <button class="btn query-btn" type="button" data-query-target="spend-view">2) Total spend per customer</button>
-                    <button class="btn query-btn" type="button" data-query-target="top-products-view">3) Top products by revenue</button>
+                    <button class="btn query-btn is-active" type="button" data-query-target="join-view">1) JOIN asiakkaat ja tilaukset</button>
+                    <button class="btn query-btn" type="button" data-query-target="spend-view">2) Kokonaiskulutus per asiakas</button>
+                    <button class="btn query-btn" type="button" data-query-target="top-products-view">3) Tuotot tuotteittain</button>
                 </p>
 
                 <article class="query-view is-active" id="join-view">
-                    <h3>1) JOIN customers and orders</h3>
-                    <p><strong>Business question:</strong> "Mitkä tilaukset kuuluvat mille asiakkaalle?"</p>
+                    <h3>1) JOIN asiakkaat ja tilaukset</h3>
+                    <p><strong>Liiketoimintakysymys:</strong> "Mitkä tilaukset kuuluvat mille asiakkaalle?"</p>
                     <pre><code>SELECT
   c.customer_id,
   c.customer_name,
@@ -102,8 +102,8 @@ ORDER BY o.order_date DESC;</code></pre>
                 </article>
 
                 <article class="query-view" id="spend-view">
-                    <h3>2) Total spend per customer (GROUP BY)</h3>
-                    <p><strong>Business question:</strong> "Kuka käyttää eniten rahaa?"</p>
+                    <h3>2) Kokonaiskulutus per asiakas (GROUP BY)</h3>
+                    <p><strong>Liiketoimintakysymys:</strong> "Kuka käyttää eniten rahaa?"</p>
                     <pre><code>SELECT
   c.customer_id,
   c.customer_name,
@@ -145,8 +145,8 @@ ORDER BY total_spend DESC;</code></pre>
                 </article>
 
                 <article class="query-view" id="top-products-view">
-                    <h3>3) Top products by revenue</h3>
-                    <p><strong>Business question:</strong> "Mitkä tuotteet tuottavat eniten liikevaihtoa?"</p>
+                    <h3>3) Tuotot tuotteittain</h3>
+                    <p><strong>Liiketoimintakysymys:</strong> "Mitkä tuotteet tuottavat eniten liikevaihtoa?"</p>
                     <pre><code>SELECT
   p.product_id,
   p.product_name,
@@ -171,7 +171,7 @@ LIMIT 3;</code></pre>
                         <tbody>
                             <tr>
                                 <td>P010</td>
-                                <td>Automation Kit</td>
+                                <td>Automaatiopaketti</td>
                                 <td>760.00</td>
                             </tr>
                             <tr>

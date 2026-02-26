@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="fi">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice Triage Flow</title>
+    <title>Laskujen reititysvirta</title>
 
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/demos/automation/invoice-triage-flow/styles.css">
@@ -16,49 +16,49 @@
     <main id="main" tabindex="-1" class="hero">
         <div class="container automation-demo">
             <section class="card panel">
-                <h1>Invoice Triage Flow</h1>
+                <h1>Laskujen reititysvirta</h1>
                 <p class="lead">
-                    Yksinkertainen automation-thinking demo laskujen reititykseen:
+                    Yksinkertainen automaatioajattelun demo laskujen reititykseen:
                     validointi, päätöspisteet ja lopputulos.
                 </p>
                 <div class="actions">
-                    <a class="btn" href="/demos/">← Back to Demos</a>
+                    <a class="btn" href="/demos/">← Takaisin osaamisnäytteisiin</a>
                     <a class="btn" href="/projects.html">Projektit</a>
                 </div>
             </section>
 
             <section class="card panel">
-                <h2>Input</h2>
+                <h2>Syöte</h2>
 
                 <div class="field">
-                    <label for="invoiceAmount">Invoice amount</label>
-                    <input id="invoiceAmount" type="number" min="0" step="0.01" placeholder="e.g. 1250">
+                    <label for="invoiceAmount">Laskun summa</label>
+                    <input id="invoiceAmount" type="number" min="0" step="0.01" placeholder="esim. 1250">
                 </div>
 
                 <div class="field">
-                    <label for="vendorName">Vendor name</label>
-                    <input id="vendorName" type="text" placeholder="e.g. Northwind Oy">
+                    <label for="vendorName">Toimittajan nimi</label>
+                    <input id="vendorName" type="text" placeholder="esim. Northwind Oy">
                 </div>
 
                 <div class="field">
-                    <label for="suspicious">Suspicious?</label>
+                    <label for="suspicious">Epäilyttävä?</label>
                     <select id="suspicious">
-                        <option value="no">No</option>
-                        <option value="yes">Yes</option>
+                        <option value="no">Ei</option>
+                        <option value="yes">Kyllä</option>
                     </select>
                 </div>
 
                 <p>
-                    <button id="runFlowBtn" class="btn primary" type="button">Run flow</button>
+                    <button id="runFlowBtn" class="btn primary" type="button">Suorita virta</button>
                 </p>
             </section>
 
             <section class="card panel">
-                <h2>Flow path</h2>
+                <h2>Virran polku</h2>
                 <ol id="flowSteps" class="steps"></ol>
                 <p>
-                    Final outcome:
-                    <span id="finalStatus" class="badge">Not run</span>
+                    Lopputulos:
+                    <span id="finalStatus" class="badge">Ei suoritettu</span>
                 </p>
             </section>
         </div>
