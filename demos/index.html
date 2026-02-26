@@ -36,7 +36,7 @@
 
       <nav class="nav-links">
         <a href="/index.html">Etusivu</a>
-        <a href="/projects.html">Projektit</a>
+        <a href="/projects.html">Laboratorio</a>
         <a href="/demos/">Osaamisnäytteet</a>
         <a href="/about.html">Tietoa</a>
       </nav>
@@ -51,7 +51,7 @@
           &nbsp;·&nbsp;
           <a href="#start">Aloita tästä</a>
           &nbsp;·&nbsp;
-          <a href="/projects.html">Projektit</a>
+          <a href="/projects.html">Laboratorio</a>
           &nbsp;·&nbsp;
           <a href="/about.html">Tietoa</a>
         </div>
@@ -63,8 +63,8 @@
         </div>
         <h1>Osaamisnäytteet</h1>
         <p>
-          Alla konkreettisia teknisiä toteutuksia ja
-          arkkitehtuuriajattelua kuvaavia näytteitä.
+          Nämä näytteet edustavat käytännön osaamistani arkkitehtuurissa,
+          automaatiossa, datalogiikassa ja käyttöliittymäratkaisuissa.
         </p>
         <article id="start" class="card" style="margin-top: 12px; padding: 16px;">
           <h2>Aloita tästä</h2>
@@ -114,12 +114,12 @@
           </article>
           <article class="card" style="margin-bottom: 10px; padding: 12px;">
             <h3 style="margin: 0 0 6px 0;"><a href="/demos/lowcode/powerapp-ui-mock/" data-keep-query="true">Power App UI -mock</a></h3>
-            <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> UI</p>
+            <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> UI / Sovellukset</p>
             <p style="margin: 0;">Mitä tämä osoittaa: miten käyttöliittymärakenne suunnitellaan selkeäksi ja käyttäjän tehtävää tukevaksi.</p>
           </article>
           <article class="card" style="padding: 12px;">
             <h3 style="margin: 0 0 6px 0;"><a href="/demos/lowcode-frontend-demo/" data-keep-query="true">Low-code frontend -demo</a></h3>
-            <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> UI</p>
+            <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> UI / Sovellukset</p>
             <p style="margin: 0;">Mitä tämä osoittaa: miten low-code-ajattelu yhdistyy toimivaan selainkäyttöliittymään.</p>
           </article>
         </section>
@@ -142,7 +142,7 @@
         <section class="card" style="margin-top: 12px; padding: 16px;">
           <h2>Miten lähestyn ratkaisuja</h2>
           <p style="margin: 0;">
-            <button class="btn" type="button" data-solution-category="Frontend/UI" data-solution-fallback="Frontend">🧩 Käyttöliittymä</button>
+            <button class="btn" type="button" data-solution-category="UI / Sovellukset" data-solution-fallback="Käyttöliittymä">🧩 UI / Sovellukset</button>
             <button class="btn" type="button" data-solution-category="Automaatio">⚙️ Automaatio</button>
             <button class="btn" type="button" data-solution-category="Arkkitehtuuri">🏗️ Arkkitehtuuri</button>
             <button class="btn" type="button" data-solution-category="Data &amp; logiikka">📊 Data &amp; logiikka</button>
@@ -212,7 +212,7 @@
       var tagFiltersRoot = document.getElementById('tag-filters');
       var showAllBtn = document.getElementById('showAllBtn');
       var solutionCategoryButtons = document.querySelectorAll('[data-solution-category]');
-      var categoryOrder = ['Low-code', 'Automaatio', 'Data & logiikka', 'Käyttöliittymä', 'Arkkitehtuuri'];
+      var categoryOrder = ['Arkkitehtuuri', 'Automaatio', 'Data & logiikka', 'UI / Sovellukset'];
       var INTERACTION_KEY = 'portfolio_interactions';
       var SESSION_KEY = 'demos_session_state';
       var LAZY_BATCH_SIZE = 6;
@@ -917,6 +917,24 @@
         return btn;
       }
 
+      function normalizeCategory(category) {
+        if (!category) return '';
+
+        var normalized = category.toLowerCase().trim();
+
+        if (normalized === 'low-code' || normalized === 'käyttöliittymä' || normalized === 'frontend/ui' || normalized === 'frontend') {
+          return 'UI / Sovellukset';
+        }
+
+        return category;
+      }
+
+      function normalizeDemo(demo) {
+        var next = Object.assign({}, demo);
+        next.category = normalizeCategory(demo.category || '');
+        return next;
+      }
+
       function getQueryParams() {
         var params = new URLSearchParams(window.location.search);
         return {
@@ -949,15 +967,16 @@
 
       function applyFilterFromURL() {
         var params = getQueryParams();
+        var requestedCategory = normalizeCategory(params.category);
 
         var hasCategory = state.demos.some(function (demo) {
-          return demo.category === params.category;
+          return demo.category === requestedCategory;
         });
         var hasTag = state.demos.some(function (demo) {
           return (demo.tags || []).indexOf(params.tag) !== -1;
         });
 
-        state.category = hasCategory ? params.category : null;
+        state.category = hasCategory ? requestedCategory : null;
         state.tag = hasTag ? params.tag : null;
         state.query = (params.q || '').trim();
 
@@ -1350,8 +1369,8 @@
       function bindSolutionCategories() {
         solutionCategoryButtons.forEach(function (button) {
           button.addEventListener('click', function () {
-            var requestedCategory = button.getAttribute('data-solution-category');
-            var fallbackCategory = button.getAttribute('data-solution-fallback');
+            var requestedCategory = normalizeCategory(button.getAttribute('data-solution-category'));
+            var fallbackCategory = normalizeCategory(button.getAttribute('data-solution-fallback'));
             var hasRequestedCategory = state.demos.some(function (demo) {
               return demo.category === requestedCategory;
             });
@@ -1391,7 +1410,7 @@
           return response.json();
         })
         .then(function (demos) {
-          state.demos = demos;
+          state.demos = demos.map(normalizeDemo);
           state.comparisonPaths = state.comparisonPaths.filter(function (path) {
             return demos.some(function (demo) { return demo.path === path; });
           });
@@ -1418,7 +1437,6 @@
 </body>
 
 </html>
-
 
 
 

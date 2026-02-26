@@ -1,7 +1,7 @@
 ﻿[
   {
     "title": "Power App UI Mock – Case-hallinta",
-    "category": "Low-code",
+    "category": "UI / Sovellukset",
     "path": "/demos/lowcode/powerapp-ui-mock/",
     "description": "Low-code-henkinen form → gallery -käyttöliittymädemo",
     "why": "Näyttää, miten low-code-ajattelu kääntyy käytännön käyttöliittymäratkaisuksi.",
@@ -95,7 +95,7 @@
   },
   {
     "title": "Mini design-järjestelmä",
-    "category": "Käyttöliittymä",
+    "category": "UI / Sovellukset",
     "path": "/demos/frontend/design-system-mini/",
     "description": "UI-johdonmukaisuuden demo: uudelleenkäytettävät painikkeet, kentät, merkit ja korttimallit.",
     "why": "Osoittaa, miten yhtenäinen komponenttipohja parantaa käyttöliittymän ylläpidettävyyttä.",
@@ -142,5 +142,4 @@
     ]
   }
 ]
-
 
