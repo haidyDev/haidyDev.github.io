@@ -95,6 +95,7 @@
   },
   {
     "title": "Mini design-järjestelmä",
+    "is_lab": true,
     "category": "UI / Sovellukset",
     "path": "/demos/frontend/design-system-mini/",
     "description": "Yhtenäinen käyttöliittymäkomponenttien kokonaisuus painikkeille, kentille ja korteille.",
@@ -114,6 +115,24 @@
       "Johdonmukainen visuaalinen kieli",
       "Saavutettavan UI:n perusteet",
       "Skaalautuva frontend-rakenne"
+    ]
+  },
+  {
+    "title": "Low-code frontend -toteutus",
+    "is_lab": true,
+    "category": "UI / Sovellukset",
+    "path": "/demos/lowcode-frontend-demo/",
+    "description": "Syötteen käsittely ja validointi kevyessä selainkäyttöliittymässä.",
+    "why": "Kevyt kokeilu, joka havainnollistaa low-code-ajattelun käyttöliittymälogiikkaa ilman laajaa järjestelmäkokonaisuutta.",
+    "tags": ["HTML", "CSS", "JavaScript", "Low-code"],
+    "stack": ["HTML", "CSS", "JavaScript"],
+    "focus": "Kevyt käyttöliittymäkokeilu",
+    "level": "Oppimisprojekti",
+    "maturity": "foundation",
+    "evidence": [
+      "Syötteen validointi",
+      "Tilapäivitys käyttöliittymässä",
+      "Yksinkertainen käyttäjävirta"
     ]
   },
   {
