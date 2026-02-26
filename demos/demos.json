@@ -3,8 +3,8 @@
     "title": "Power App UI Mock – Case-hallinta",
     "category": "UI / Sovellukset",
     "path": "/demos/lowcode/powerapp-ui-mock/",
-    "description": "Low-code-henkinen form → gallery -käyttöliittymädemo",
-    "why": "Näyttää, miten low-code-ajattelu kääntyy käytännön käyttöliittymäratkaisuksi.",
+    "description": "Case-käsittelyn käyttöliittymäratkaisu form- ja listanäkymällä.",
+    "why": "Low-code-käyttöliittymän rakenteistus, syötteen hallinta ja käyttäjän työnkulun ohjaus samassa näkymässä.",
     "use_cases": [
       "Sisäinen case-käsittelytiimin työjono",
       "Asiakaspalvelun tapausten tilaseuranta"
@@ -27,8 +27,8 @@
     "category": "Arkkitehtuuri",
     "featured": true,
     "path": "/demos/architecture/booking-system-before-after/",
-    "description": "Arkkitehtuuriajattelun demo: nykytilan ongelmat → ehdotettu Power Platform -ratkaisu riskeineen ja hallintakeinoineen.",
-    "why": "Havainnollistaa, miten nykytila-analyysista edetään perusteltuun tavoitetilan arkkitehtuuriin.",
+    "description": "Nykytilan ongelmat ja tavoitetilan ratkaisu samassa arkkitehtuurimallissa.",
+    "why": "Arkkitehtuurin nykytila-analyysi, tavoitetilan mallinnus ja riskienhallinta liiketoimintatarpeista lähtien.",
     "use_cases": [
       "Varausprosessin modernisoinnin suunnittelupohja",
       "Järjestelmärajapintojen riskien arviointi"
@@ -50,8 +50,8 @@
     "title": "JSON-muunnosputki",
     "category": "Data & logiikka",
     "path": "/demos/data/json-transform-pipeline/",
-    "description": "Yksinkertainen datan muunnosdemo, joka havainnollistaa logiikan kulun.",
-    "why": "Tekee datan muunnoslogiikan vaiheittain näkyväksi ja helposti arvioitavaksi.",
+    "description": "JSON-syötteen muunnos vaiheittain selkeään jatkokäyttömuotoon.",
+    "why": "Datan validointi ja muunnoslogiikka, jolla epäyhtenäinen JSON normalisoidaan luotettavaan rakenteeseen.",
     "use_cases": [
       "API-vastausten muunnos raportointimuotoon",
       "Integraatiodatan validointi ennen tallennusta"
@@ -74,8 +74,8 @@
     "category": "Automaatio",
     "featured": true,
     "path": "/demos/automation/invoice-triage-flow/",
-    "description": "Automaatioajattelun demo: laskujen reititys validoinnin ja hyväksyntöjen kautta.",
-    "why": "Näyttää, miten toistuva prosessi automatisoidaan hallitusti sääntöjen ja hyväksyntöjen kautta.",
+    "description": "Laskujen reititysprosessi sääntöjen, validoinnin ja hyväksyntöjen avulla.",
+    "why": "Prosessiautomaatio, jossa laskudata tarkistetaan ja ohjataan oikeaan käsittelyyn ilman manuaalista vaihetta.",
     "use_cases": [
       "Saapuvien laskujen automaattinen reititys",
       "Poikkeuslaskujen ohjaus manuaaliseen käsittelyyn"
@@ -97,8 +97,8 @@
     "title": "Mini design-järjestelmä",
     "category": "UI / Sovellukset",
     "path": "/demos/frontend/design-system-mini/",
-    "description": "UI-johdonmukaisuuden demo: uudelleenkäytettävät painikkeet, kentät, merkit ja korttimallit.",
-    "why": "Osoittaa, miten yhtenäinen komponenttipohja parantaa käyttöliittymän ylläpidettävyyttä.",
+    "description": "Yhtenäinen käyttöliittymäkomponenttien kokonaisuus painikkeille, kentille ja korteille.",
+    "why": "Komponenttipohjainen UI-rakenne, joka tukee johdonmukaista toteutusta ja nopeaa jatkokehitystä.",
     "use_cases": [
       "Yhtenäinen UI sisäiseen työkalukokonaisuuteen",
       "Nopea prototypointi samoilla komponenteilla"
@@ -121,8 +121,8 @@
     "category": "Data & logiikka",
     "featured": true,
     "path": "/demos/data/sql-orders-analysis/",
-    "description": "Relaatiokyselydemo asiakastilausten analysointiin.",
-    "why": "Demonstroi, miten liiketoimintakysymykset muutetaan SQL-kyselyiksi päätöksenteon tueksi.",
+    "description": "Relaatiodataan perustuva tilausanalyysi SQL-kyselyillä.",
+    "why": "SQL-ajattelu, jossa liiketoimintakysymykset muutetaan liittymä-, suodatus- ja aggregointilogiikaksi.",
     "use_cases": [
       "Myynnin trendien analyysi asiakasryhmittäin",
       "Toimitusviiveiden syiden tunnistaminen"
@@ -142,4 +142,3 @@
     ]
   }
 ]
-

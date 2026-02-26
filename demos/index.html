@@ -100,27 +100,62 @@
           <article class="card" style="margin-bottom: 10px; padding: 12px;">
             <h3 style="margin: 0 0 6px 0;"><a href="/demos/architecture/booking-system-before-after/" data-keep-query="true">Varausjärjestelmä ennen/jälkeen</a></h3>
             <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> Arkkitehtuuri</p>
-            <p style="margin: 0;">Mitä tämä osoittaa: miten nykytila puretaan ja muutetaan hallituksi tavoitearkkitehtuuriksi.</p>
+            <p style="margin: 0 0 6px 0;"><strong>Mitä tämä osoittaa:</strong> Arkkitehtuurin nykytila-analyysi ja tavoitetilan suunnittelu käytännön järjestelmämuutoksessa.</p>
+            <p style="margin: 0 0 4px 0;"><strong>Tekniikat:</strong></p>
+            <ul style="margin: 0 0 0 18px; padding: 0;">
+              <li>Power Platform</li>
+              <li>Dataverse</li>
+              <li>Rajapintojen mallinnus</li>
+              <li>Riskienhallinta</li>
+            </ul>
           </article>
           <article class="card" style="margin-bottom: 10px; padding: 12px;">
             <h3 style="margin: 0 0 6px 0;"><a href="/demos/automation/invoice-triage-flow/" data-keep-query="true">Laskujen triage-automaatio</a></h3>
             <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> Automaatio</p>
-            <p style="margin: 0;">Mitä tämä osoittaa: miten saapuva laskudata ohjataan sääntöpohjaisesti oikeaan käsittelypolkuun.</p>
+            <p style="margin: 0 0 6px 0;"><strong>Mitä tämä osoittaa:</strong> Prosessiautomaatioajattelu ja laskudatan sääntöpohjainen reititys.</p>
+            <p style="margin: 0 0 4px 0;"><strong>Tekniikat:</strong></p>
+            <ul style="margin: 0 0 0 18px; padding: 0;">
+              <li>Power Automate</li>
+              <li>Ehtologiikka</li>
+              <li>Validointi</li>
+              <li>Poikkeuspolut</li>
+            </ul>
           </article>
           <article class="card" style="margin-bottom: 10px; padding: 12px;">
             <h3 style="margin: 0 0 6px 0;"><a href="/demos/data/json-transform-pipeline/" data-keep-query="true">JSON-muunnosputki</a></h3>
             <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> Data &amp; logiikka</p>
-            <p style="margin: 0;">Mitä tämä osoittaa: miten raakamuotoinen JSON normalisoidaan jatkokäyttöön luotettavalla logiikalla.</p>
+            <p style="margin: 0 0 6px 0;"><strong>Mitä tämä osoittaa:</strong> Datan muunnoslogiikan rakentaminen niin, että syöte normalisoituu luotettavaan rakenteeseen.</p>
+            <p style="margin: 0 0 4px 0;"><strong>Tekniikat:</strong></p>
+            <ul style="margin: 0 0 0 18px; padding: 0;">
+              <li>JSON</li>
+              <li>JavaScript</li>
+              <li>Muunnosputki</li>
+              <li>Virheenkäsittely</li>
+            </ul>
           </article>
           <article class="card" style="margin-bottom: 10px; padding: 12px;">
             <h3 style="margin: 0 0 6px 0;"><a href="/demos/lowcode/powerapp-ui-mock/" data-keep-query="true">Power App UI -mock</a></h3>
             <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> UI / Sovellukset</p>
-            <p style="margin: 0;">Mitä tämä osoittaa: miten käyttöliittymärakenne suunnitellaan selkeäksi ja käyttäjän tehtävää tukevaksi.</p>
+            <p style="margin: 0 0 6px 0;"><strong>Mitä tämä osoittaa:</strong> Käyttöliittymäratkaisun suunnittelu selkeälle case-käsittelyprosessille.</p>
+            <p style="margin: 0 0 4px 0;"><strong>Tekniikat:</strong></p>
+            <ul style="margin: 0 0 0 18px; padding: 0;">
+              <li>Power Apps -rakenne</li>
+              <li>UX-flow</li>
+              <li>Lomakevalidointi</li>
+              <li>Statusnäkymä</li>
+            </ul>
           </article>
           <article class="card" style="padding: 12px;">
-            <h3 style="margin: 0 0 6px 0;"><a href="/demos/lowcode-frontend-demo/" data-keep-query="true">Low-code frontend -demo</a></h3>
+            <h3 style="margin: 0 0 6px 0;"><a href="/demos/lowcode-frontend-demo/" data-keep-query="true">Low-code frontend -toteutus</a></h3>
             <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> UI / Sovellukset</p>
-            <p style="margin: 0;">Mitä tämä osoittaa: miten low-code-ajattelu yhdistyy toimivaan selainkäyttöliittymään.</p>
+            <p style="margin: 0 0 6px 0;"><strong>Mitä tämä osoittaa:</strong> Low-code-ajattelun vieminen toimivaan selainkäyttöliittymään ja syötteen käsittelyyn.</p>
+            <p style="margin: 0 0 4px 0;"><strong>Tekniikat:</strong></p>
+            <ul style="margin: 0 0 0 18px; padding: 0;">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+              <li>Syötteen validointi</li>
+            </ul>
           </article>
         </section>
         <div style="margin-top: 12px;">
@@ -346,11 +381,6 @@
       }
 
       function renderDemoCard(demo) {
-        var maturityLabels = {
-          foundation: 'Perustaso',
-          applied: 'Sovellettu',
-          advanced: 'Edistynyt'
-        };
         var card = document.createElement('article');
         card.className = 'card';
         if (demo.featured === true) {
@@ -379,96 +409,44 @@
           card.appendChild(featuredLabel);
         }
 
-        var description = document.createElement('p');
-        description.textContent = demo.description || '';
-        var whyBlock = document.createElement('p');
-        whyBlock.style.margin = '8px 0 0 0';
-        whyBlock.style.fontSize = '0.85rem';
-        whyBlock.style.color = 'var(--muted)';
-        if (demo.why_now) {
-          whyBlock.textContent = 'Miksi tämä on tehty: ' + demo.why_now;
+        var categoryLine = document.createElement('p');
+        categoryLine.style.margin = '0 0 6px 0';
+        categoryLine.innerHTML = '<strong>Kategoria:</strong> ' + (demo.category || '-');
+
+        var proofText = (demo.why || demo.description || '').trim();
+        var proofLine = document.createElement('p');
+        proofLine.style.margin = '0 0 6px 0';
+        proofLine.innerHTML = '<strong>Mitä tämä osoittaa:</strong> ' + proofText;
+
+        var techniquesLabel = document.createElement('p');
+        techniquesLabel.style.margin = '0 0 4px 0';
+        techniquesLabel.innerHTML = '<strong>Tekniikat:</strong>';
+
+        var uniqueTechniques = [];
+        (demo.stack || []).forEach(function (item) {
+          if (item && uniqueTechniques.indexOf(item) === -1) {
+            uniqueTechniques.push(item);
+          }
+        });
+        (demo.tags || []).forEach(function (item) {
+          if (item && uniqueTechniques.indexOf(item) === -1) {
+            uniqueTechniques.push(item);
+          }
+        });
+        if (uniqueTechniques.length < 2 && demo.focus) {
+          uniqueTechniques.push(demo.focus);
         }
+        uniqueTechniques = uniqueTechniques.slice(0, 4);
 
-        var summaryRow = document.createElement('p');
-        summaryRow.style.margin = '8px 0 0 0';
-
-        if (demo.focus) {
-          var focusLabel = document.createElement('span');
-          focusLabel.textContent = 'Fokus: ' + demo.focus;
-          focusLabel.style.display = 'inline-block';
-          focusLabel.style.fontSize = '0.78rem';
-          focusLabel.style.padding = '4px 8px';
-          focusLabel.style.marginRight = '6px';
-          focusLabel.style.marginBottom = '6px';
-          focusLabel.style.borderRadius = '999px';
-          focusLabel.style.border = '1px solid var(--line)';
-          focusLabel.style.background = 'rgba(242, 210, 122, 0.18)';
-          summaryRow.appendChild(focusLabel);
-        }
-
-        if (demo.level) {
-          var levelLabel = document.createElement('span');
-          levelLabel.textContent = 'Taso: ' + demo.level;
-          levelLabel.style.display = 'inline-block';
-          levelLabel.style.fontSize = '0.78rem';
-          levelLabel.style.padding = '4px 8px';
-          levelLabel.style.marginRight = '6px';
-          levelLabel.style.marginBottom = '6px';
-          levelLabel.style.borderRadius = '999px';
-          levelLabel.style.border = '1px solid var(--line)';
-          levelLabel.style.background = 'rgba(255, 255, 255, 0.06)';
-          summaryRow.appendChild(levelLabel);
-        }
-
-        if (demo.maturity && maturityLabels[demo.maturity]) {
-          var maturityLabel = document.createElement('span');
-          maturityLabel.textContent = maturityLabels[demo.maturity];
-          maturityLabel.style.display = 'inline-block';
-          maturityLabel.style.fontSize = '0.78rem';
-          maturityLabel.style.padding = '4px 8px';
-          maturityLabel.style.marginRight = '6px';
-          maturityLabel.style.marginBottom = '6px';
-          maturityLabel.style.borderRadius = '999px';
-          maturityLabel.style.border = '1px solid var(--line)';
-          maturityLabel.style.background = 'rgba(255, 255, 255, 0.06)';
-          summaryRow.appendChild(maturityLabel);
-        }
-
-        var stackLine = document.createElement('p');
-        stackLine.style.margin = '6px 0 0 0';
-        stackLine.style.fontSize = '0.82rem';
-        stackLine.style.color = 'var(--muted)';
-        if ((demo.stack || []).length > 0) {
-          stackLine.textContent = 'Teknologiat: ' + demo.stack.join(' • ');
-        }
-
-        var evidenceList = document.createElement('ul');
-        evidenceList.style.margin = '8px 0 0 18px';
-        evidenceList.style.padding = '0';
-        evidenceList.style.fontSize = '0.82rem';
-        evidenceList.style.color = 'var(--muted)';
-        (demo.evidence || []).forEach(function (item) {
+        var techniquesList = document.createElement('ul');
+        techniquesList.style.margin = '0 0 10px 18px';
+        techniquesList.style.padding = '0';
+        techniquesList.style.fontSize = '0.9rem';
+        techniquesList.style.color = 'var(--muted)';
+        uniqueTechniques.forEach(function (item) {
           var li = document.createElement('li');
           li.textContent = item;
-          li.style.marginBottom = '2px';
-          evidenceList.appendChild(li);
-        });
-
-        var tagsRow = document.createElement('p');
-        tagsRow.style.marginTop = '8px';
-
-        (demo.tags || []).forEach(function (tag) {
-          var badge = document.createElement('span');
-          badge.textContent = tag;
-          badge.style.display = 'inline-block';
-          badge.style.fontSize = '0.78rem';
-          badge.style.padding = '4px 8px';
-          badge.style.marginRight = '6px';
-          badge.style.marginBottom = '6px';
-          badge.style.borderRadius = '999px';
-          badge.style.border = '1px solid var(--line)';
-          badge.style.background = 'rgba(255, 255, 255, 0.06)';
-          tagsRow.appendChild(badge);
+          techniquesList.appendChild(li);
         });
 
         var actions = document.createElement('p');
@@ -480,7 +458,7 @@
         link.className = 'btn';
         link.href = demo.path;
         link.setAttribute('data-keep-query', 'true');
-        link.textContent = 'Avaa demo';
+        link.textContent = 'Avaa näyte';
         link.addEventListener('click', function () {
           trackEvent('demo_link_click', {
             title: demo.title,
@@ -672,20 +650,10 @@
         });
 
         card.appendChild(title);
-        card.appendChild(description);
-        if (demo.why_now) {
-          card.appendChild(whyBlock);
-        }
-        if (summaryRow.childNodes.length > 0) {
-          card.appendChild(summaryRow);
-        }
-        if (stackLine.textContent) {
-          card.appendChild(stackLine);
-        }
-        if (evidenceList.childNodes.length > 0) {
-          card.appendChild(evidenceList);
-        }
-        card.appendChild(tagsRow);
+        card.appendChild(categoryLine);
+        card.appendChild(proofLine);
+        card.appendChild(techniquesLabel);
+        card.appendChild(techniquesList);
         card.appendChild(actions);
         card.appendChild(previewWrap);
         appendCurrentQueryToLinks(card);
@@ -1437,8 +1405,6 @@
 </body>
 
 </html>
-
-
 
 
 
