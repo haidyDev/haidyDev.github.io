@@ -27,3 +27,28 @@
 .booking-demo .is-hidden {
     display: none;
 }
+
+.booking-demo .solution-thinking p {
+    margin: 0 0 10px 0;
+}
+
+.booking-demo .thinking-flow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 8px 0 14px 0;
+}
+
+.booking-demo .thinking-step {
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.06);
+    font-size: 0.9rem;
+}
+
+.booking-demo .thinking-arrow {
+    color: var(--muted);
+    font-size: 1rem;
+}
