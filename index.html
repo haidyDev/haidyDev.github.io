@@ -68,48 +68,38 @@
     <div class="container">
       <section class="card" style="padding: 18px;">
         <h2 style="margin-top: 0;">Nostot</h2>
-        <div id="featured-demos">
-          <p style="margin: 0;">Ladataan...</p>
+        <div>
+          <article class="card" style="margin-bottom: 10px; padding: 12px;">
+            <h3 style="margin: 0 0 6px 0;"><a href="/demos/architecture/booking-system-before-after/">Varausjärjestelmä ennen/jälkeen</a></h3>
+            <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> Arkkitehtuuri</p>
+            <p style="margin: 0;">Mitä tämä osoittaa: miten nykytila puretaan ja muutetaan hallituksi tavoitearkkitehtuuriksi.</p>
+          </article>
+          <article class="card" style="margin-bottom: 10px; padding: 12px;">
+            <h3 style="margin: 0 0 6px 0;"><a href="/demos/automation/invoice-triage-flow/">Laskujen triage-automaatio</a></h3>
+            <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> Automaatio</p>
+            <p style="margin: 0;">Mitä tämä osoittaa: miten saapuva laskudata ohjataan sääntöpohjaisesti oikeaan käsittelypolkuun.</p>
+          </article>
+          <article class="card" style="margin-bottom: 10px; padding: 12px;">
+            <h3 style="margin: 0 0 6px 0;"><a href="/demos/data/json-transform-pipeline/">JSON-muunnosputki</a></h3>
+            <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> Data &amp; logiikka</p>
+            <p style="margin: 0;">Mitä tämä osoittaa: miten raakamuotoinen JSON normalisoidaan jatkokäyttöön luotettavalla logiikalla.</p>
+          </article>
+          <article class="card" style="margin-bottom: 10px; padding: 12px;">
+            <h3 style="margin: 0 0 6px 0;"><a href="/demos/lowcode/powerapp-ui-mock/">Power App UI -mock</a></h3>
+            <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> UI</p>
+            <p style="margin: 0;">Mitä tämä osoittaa: miten käyttöliittymärakenne suunnitellaan selkeäksi ja käyttäjän tehtävää tukevaksi.</p>
+          </article>
+          <article class="card" style="padding: 12px;">
+            <h3 style="margin: 0 0 6px 0;"><a href="/demos/lowcode-frontend-demo/">Low-code frontend -demo</a></h3>
+            <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> UI</p>
+            <p style="margin: 0;">Mitä tämä osoittaa: miten low-code-ajattelu yhdistyy toimivaan selainkäyttöliittymään.</p>
+          </article>
         </div>
       </section>
     </div>
   </section>
 
   <div id="site-footer"></div>
-
-  <script>
-    (function () {
-      var target = document.getElementById('featured-demos');
-      if (!target) return;
-
-      fetch('/demos/demos.json', { credentials: 'same-origin' })
-        .then(function (response) {
-          if (!response.ok) {
-            throw new Error(response.status + ' ' + response.statusText);
-          }
-          return response.json();
-        })
-        .then(function (demos) {
-          target.innerHTML = '';
-
-          demos.slice(0, 3).forEach(function (demo) {
-            var row = document.createElement('p');
-            row.style.margin = '0 0 8px 0';
-
-            var link = document.createElement('a');
-            link.className = 'btn';
-            link.href = demo.path;
-            link.textContent = demo.title;
-
-            row.appendChild(link);
-            target.appendChild(row);
-          });
-        })
-        .catch(function () {
-          target.innerHTML = '<p style="margin: 0;">Nostojen lataus ei onnistunut.</p>';
-        });
-    })();
-  </script>
 
   <button id="backToTop" class="back-to-top" type="button" aria-label="Takaisin ylös" title="Takaisin ylös">
     <span class="back-to-top__icon" aria-hidden="true">↑</span>

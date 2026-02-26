@@ -95,6 +95,34 @@
             • Tuleva Solution Architect -suunta
           </p>
         </article>
+        <section class="card" style="margin-top: 12px; padding: 16px;">
+          <h2 style="margin-top: 0;">Nostot</h2>
+          <article class="card" style="margin-bottom: 10px; padding: 12px;">
+            <h3 style="margin: 0 0 6px 0;"><a href="/demos/architecture/booking-system-before-after/" data-keep-query="true">Varausjärjestelmä ennen/jälkeen</a></h3>
+            <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> Arkkitehtuuri</p>
+            <p style="margin: 0;">Mitä tämä osoittaa: miten nykytila puretaan ja muutetaan hallituksi tavoitearkkitehtuuriksi.</p>
+          </article>
+          <article class="card" style="margin-bottom: 10px; padding: 12px;">
+            <h3 style="margin: 0 0 6px 0;"><a href="/demos/automation/invoice-triage-flow/" data-keep-query="true">Laskujen triage-automaatio</a></h3>
+            <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> Automaatio</p>
+            <p style="margin: 0;">Mitä tämä osoittaa: miten saapuva laskudata ohjataan sääntöpohjaisesti oikeaan käsittelypolkuun.</p>
+          </article>
+          <article class="card" style="margin-bottom: 10px; padding: 12px;">
+            <h3 style="margin: 0 0 6px 0;"><a href="/demos/data/json-transform-pipeline/" data-keep-query="true">JSON-muunnosputki</a></h3>
+            <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> Data &amp; logiikka</p>
+            <p style="margin: 0;">Mitä tämä osoittaa: miten raakamuotoinen JSON normalisoidaan jatkokäyttöön luotettavalla logiikalla.</p>
+          </article>
+          <article class="card" style="margin-bottom: 10px; padding: 12px;">
+            <h3 style="margin: 0 0 6px 0;"><a href="/demos/lowcode/powerapp-ui-mock/" data-keep-query="true">Power App UI -mock</a></h3>
+            <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> UI</p>
+            <p style="margin: 0;">Mitä tämä osoittaa: miten käyttöliittymärakenne suunnitellaan selkeäksi ja käyttäjän tehtävää tukevaksi.</p>
+          </article>
+          <article class="card" style="padding: 12px;">
+            <h3 style="margin: 0 0 6px 0;"><a href="/demos/lowcode-frontend-demo/" data-keep-query="true">Low-code frontend -demo</a></h3>
+            <p style="margin: 0 0 4px 0;"><strong>Kategoria:</strong> UI</p>
+            <p style="margin: 0;">Mitä tämä osoittaa: miten low-code-ajattelu yhdistyy toimivaan selainkäyttöliittymään.</p>
+          </article>
+        </section>
         <div style="margin-top: 12px;">
           <label for="demoSearchInput"><strong>Hae näytteistä</strong></label>
           <input id="demoSearchInput" type="search" placeholder="Hae otsikolla, tagilla, teknologialla tai fokuksella..." style="margin-top: 8px; width: 100%; max-width: 460px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255, 255, 255, 0.06); color: var(--text);">
@@ -1189,12 +1217,6 @@
         updateURLFromFilter();
       }
 
-      function showLoadingState() {
-        root.innerHTML = '';
-        statusBox.style.display = 'block';
-        statusBox.innerHTML = '<p style="margin: 0;">Ladataan...</p>';
-      }
-
       function showEmptyState() {
         root.innerHTML = '';
         statusBox.style.display = 'block';
@@ -1358,7 +1380,6 @@
         });
       }
 
-      showLoadingState();
       bindScrollPersistence();
       bindEscapeToClosePreview();
 
